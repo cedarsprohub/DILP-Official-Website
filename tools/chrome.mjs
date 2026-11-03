@@ -44,7 +44,7 @@ export const PARTNERSHIPS_EMAIL = 'partnerships@cedarsprohub.com';
    instead of a dead link, so the page is safe to ship before they exist.
    ------------------------------------------------------------------------- */
 export const PAYSTACK = {
-  ngn: '',   // e.g. https://paystack.shop/pay/dilp-naira
+  ngn: 'https://paystack.shop/pay/dilp-donation',
   usd: '',   // e.g. https://paystack.shop/pay/dilp-dollar
 };
 

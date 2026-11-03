@@ -268,8 +268,7 @@ function articleCard(a, base) {
     : esc(a.title);
 
   const foot = a.published
-    ? `<span class="article-card__read">Read takeaways &rarr;</span>
-              <span class="article-card__note">Example article</span>`
+    ? `<span class="article-card__read">Read takeaways &rarr;</span>`
     : `<span class="article-card__read article-card__read--soon">Coming soon</span>
               <span class="article-card__note">Planned article</span>`;
 
@@ -451,7 +450,7 @@ ${header(base, 'leadership')}
         <div class="article-intro__meta">
           <span class="article-intro__byline">${esc(a.byline)}</span>
           <span>${esc(a.meta)}</span>
-          <a href="#main">Share ↗</a>
+          <a class="share-link" href="https://wa.me/?text=${encodeURIComponent(a.title.join(' '))}" target="_blank" rel="noopener noreferrer" data-share>Share on WhatsApp ↗</a>
         </div>
       </div>
 
@@ -517,7 +516,7 @@ ${header(base, 'leadership')}
 
         <div class="prose__foot">
           <span>${esc(a.credit)}</span>
-          <a href="#main">Share this article ↗</a>
+          <a class="share-link" href="https://wa.me/?text=${encodeURIComponent(a.title.join(' '))}" target="_blank" rel="noopener noreferrer" data-share>Share this article on WhatsApp ↗</a>
         </div>
       </div>
     </div>
@@ -574,7 +573,7 @@ function giveSection() {
   const cards = GIVE_CURRENCIES.map((c) => {
     const url = PAYSTACK[c.key];
     const cta = url
-      ? `<a class="btn btn--blue btn--enquiry btn--block" href="${esc(url)}" target="_blank" rel="noopener noreferrer">Give in ${c.code} &nbsp;&rarr;</a>`
+      ? `<a class="btn btn--blue btn--enquiry btn--block" href="${esc(url)}" data-give-cta data-base-url="${esc(url)}" target="_blank" rel="noopener noreferrer">Give in ${c.code} &nbsp;&rarr;</a>`
       : `<span class="btn btn--blue btn--enquiry btn--block is-pending" role="link" aria-disabled="true">${c.code} link coming soon</span>`;
 
     return `<article class="give-card ${c.cls} reveal">
@@ -585,9 +584,13 @@ function giveSection() {
               <p class="give-card__blurb">${esc(c.blurb)}</p>
             </div>
           </div>
-          <ul class="give-card__amounts">
-            ${c.amounts.map((a) => `<li>${c.symbol}${esc(a)}</li>`).join('\n            ')}
-            <li class="give-card__amounts-any">Any amount</li>
+          <ul class="give-card__amounts"${url ? ` data-amounts="${esc(c.key)}"` : ''}>
+            ${c.amounts.map((a) => url
+              ? `<li><button class="give-card__amount" type="button" data-amount="${esc(a.replace(/,/g, ''))}">${c.symbol}${esc(a)}</button></li>`
+              : `<li><span class="give-card__amount is-static">${c.symbol}${esc(a)}</span></li>`).join('\n            ')}
+            <li>${url
+              ? `<button class="give-card__amount give-card__amount--any is-selected" type="button" data-amount="">Any amount</button>`
+              : `<span class="give-card__amount give-card__amount--any is-static">Any amount</span>`}</li>
           </ul>
           ${cta}
           <p class="give-card__note">${esc(c.note)}</p>
@@ -645,7 +648,7 @@ const SUPPORT_QA = [
 
 function getInvolvedPage() {
   const base = '';
-  const partnerMail = `mailto:${PARTNERSHIPS_EMAIL}?subject=${encodeURIComponent('Partnership enquiry — DILP')}`;
+  const partnerMail = `mailto:${PARTNERSHIPS_EMAIL}?subject=${encodeURIComponent('Partnership enquiry: DILP')}`;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -784,6 +787,7 @@ ${header(base, 'involved')}
           </label>
 
           <button class="btn btn--blue btn--enquiry btn--block" type="submit">Send donation enquiry &nbsp;&rarr;</button>
+          <p class="enquiry__confirm" data-donation-confirm hidden role="status"></p>
           <p class="enquiry__note">Discuss donation arrangements with the DILP team before making a contribution. No payment details are collected here.</p>
         </form>
       </div>

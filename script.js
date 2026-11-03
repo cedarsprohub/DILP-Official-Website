@@ -504,7 +504,7 @@
 
       var href =
         'mailto:partnerships@cedarsprohub.com' +
-        '?subject=' + encodeURIComponent('Donation enquiry — DILP') +
+        '?subject=' + encodeURIComponent('Donation enquiry: DILP') +
         '&body=' + encodeURIComponent(lines.join('\n'));
 
       // An anchor click opens the mail client more reliably than assigning
@@ -516,6 +516,61 @@
       document.body.appendChild(link);
       link.click();
       link.remove();
+
+      var confirm = document.querySelector('[data-donation-confirm]');
+      if (confirm) {
+        confirm.innerHTML =
+          'Thank you, ' + (get('name').split(' ')[0] || 'and thank you') + '. ' +
+          'Your enquiry is now open in your email app, addressed to ' +
+          '<a href="mailto:partnerships@cedarsprohub.com">partnerships@cedarsprohub.com</a>. ' +
+          'Press send there to reach the DILP team. If nothing opened, email that address directly.';
+        confirm.hidden = false;
+        confirm.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    });
+  }
+
+  /* -----------------------------------------------------------------------
+     Share: the markup already carries a WhatsApp link with the headline, so
+     the link works without JavaScript. Here we add the page's own address.
+     -------------------------------------------------------------------- */
+  function setUpShareLinks() {
+    var links = document.querySelectorAll('[data-share]');
+    if (!links.length) return;
+
+    var heading = document.querySelector('h1');
+    var title = heading ? (heading.innerText || heading.textContent).replace(/\s+/g, ' ').trim() : document.title;
+
+    links.forEach(function (link) {
+      link.href = 'https://wa.me/?text=' + encodeURIComponent(title + ' ' + window.location.href);
+    });
+  }
+
+  /* -----------------------------------------------------------------------
+     Give now: picking an amount passes it to Paystack. "Any amount" leaves
+     the payment page to ask.
+     -------------------------------------------------------------------- */
+  function setUpGiveAmounts() {
+    var groups = document.querySelectorAll('[data-amounts]');
+    if (!groups.length) return;
+
+    groups.forEach(function (group) {
+      var card = group.closest('.give-card');
+      var cta = card && card.querySelector('[data-give-cta]');
+      var buttons = group.querySelectorAll('.give-card__amount');
+      if (!cta) return;
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          buttons.forEach(function (b) { b.classList.toggle('is-selected', b === button); });
+
+          var naira = button.dataset.amount;
+          // Paystack takes the amount in kobo.
+          cta.href = naira
+            ? cta.dataset.baseUrl + '?amount=' + (Number(naira) * 100)
+            : cta.dataset.baseUrl;
+        });
+      });
     });
   }
 
@@ -559,6 +614,8 @@
     setUpArticleLibrary();
     setUpDonationForm();
     setUpArticleContents();
+    setUpShareLinks();
+    setUpGiveAmounts();
   }
 
   if (document.readyState === 'loading') {

@@ -153,7 +153,7 @@
           <h2>Your expertise. Your resources.<br>Makes a stronger pathway.</h2>
           <p>Partners widen access, deepen the work and connect participants to real opportunities. Here is where support goes.</p>
         </div>
-        <a class="btn btn--blue btn--enquiry reveal" href="mailto:partnerships@cedarsprohub.com?subject=Partnership%20enquiry%20%E2%80%94%20DILP">Start a partnership enquiry &nbsp;&rarr;</a>
+        <a class="btn btn--blue btn--enquiry reveal" href="mailto:partnerships@cedarsprohub.com?subject=Partnership%20enquiry%3A%20DILP">Start a partnership enquiry &nbsp;&rarr;</a>
       </div>
 
       <div class="partner-options">
@@ -225,13 +225,13 @@
               <p class="give-card__blurb">For supporters giving from within Nigeria.</p>
             </div>
           </div>
-          <ul class="give-card__amounts">
-            <li>₦25,000</li>
-            <li>₦50,000</li>
-            <li>₦150,000</li>
-            <li class="give-card__amounts-any">Any amount</li>
+          <ul class="give-card__amounts" data-amounts="ngn">
+            <li><button class="give-card__amount" type="button" data-amount="25000">₦25,000</button></li>
+            <li><button class="give-card__amount" type="button" data-amount="50000">₦50,000</button></li>
+            <li><button class="give-card__amount" type="button" data-amount="150000">₦150,000</button></li>
+            <li><button class="give-card__amount give-card__amount--any is-selected" type="button" data-amount="">Any amount</button></li>
           </ul>
-          <span class="btn btn--blue btn--enquiry btn--block is-pending" role="link" aria-disabled="true">NGN link coming soon</span>
+          <a class="btn btn--blue btn--enquiry btn--block" href="https://paystack.shop/pay/dilp-donation" data-give-cta data-base-url="https://paystack.shop/pay/dilp-donation" target="_blank" rel="noopener noreferrer">Give in NGN &nbsp;&rarr;</a>
           <p class="give-card__note">Card, bank transfer or USSD.</p>
         </article>
         <article class="give-card give-card--usd reveal">
@@ -243,10 +243,10 @@
             </div>
           </div>
           <ul class="give-card__amounts">
-            <li>$25</li>
-            <li>$50</li>
-            <li>$100</li>
-            <li class="give-card__amounts-any">Any amount</li>
+            <li><span class="give-card__amount is-static">$25</span></li>
+            <li><span class="give-card__amount is-static">$50</span></li>
+            <li><span class="give-card__amount is-static">$100</span></li>
+            <li><span class="give-card__amount give-card__amount--any is-static">Any amount</span></li>
           </ul>
           <span class="btn btn--blue btn--enquiry btn--block is-pending" role="link" aria-disabled="true">USD link coming soon</span>
           <p class="give-card__note">International cards accepted.</p>
@@ -317,6 +317,7 @@
           </label>
 
           <button class="btn btn--blue btn--enquiry btn--block" type="submit">Send donation enquiry &nbsp;&rarr;</button>
+          <p class="enquiry__confirm" data-donation-confirm hidden role="status"></p>
           <p class="enquiry__note">Discuss donation arrangements with the DILP team before making a contribution. No payment details are collected here.</p>
         </form>
       </div>
@@ -378,7 +379,7 @@
       <h2><span class="accent">Skills need opportunity.</span><br>You can help connect the two.</h2>
       <p>Bring your resources, your experience or your network. Help young people turn learning into practical work.</p>
       <div class="invitation__ctas">
-        <a class="btn btn--yellow btn--track" href="mailto:partnerships@cedarsprohub.com?subject=Partnership%20enquiry%20%E2%80%94%20DILP">Start a partnership enquiry</a>
+        <a class="btn btn--yellow btn--track" href="mailto:partnerships@cedarsprohub.com?subject=Partnership%20enquiry%3A%20DILP">Start a partnership enquiry</a>
         <a class="btn btn--ghost-blue btn--track" href="#give">Make a donation</a>
       </div>
     </div>

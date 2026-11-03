@@ -104,6 +104,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 ul { margin: 0; padding: 0; list-style: none; }
 h1, h2, h3, h4, p, figure, figcaption, blockquote { margin: 0; }
 
+/* A card sets display:flex, which outranks the hidden attribute. */
+[hidden] { display: none !important; }
+
 :focus-visible {
   outline: 3px solid var(--blue-5);
   outline-offset: 3px;
@@ -2775,7 +2778,8 @@ h1, h2, h3, h4, p, figure, figcaption, blockquote { margin: 0; }
 .give-card__blurb { margin-top: 6px; font-size: 15px; line-height: 1.45; color: var(--text-7); }
 
 .give-card__amounts { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; }
-.give-card__amounts li {
+.give-card__amount {
+  display: inline-block;
   padding: 9px 16px;
   border: 1px solid var(--hairline-2);
   border-radius: var(--radius-pill);
@@ -2785,11 +2789,32 @@ h1, h2, h3, h4, p, figure, figcaption, blockquote { margin: 0; }
   font-size: 14px;
   color: var(--ink-soft);
   white-space: nowrap;
+  transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease),
+    color 0.2s var(--ease);
 }
-.give-card__amounts-any { border-style: dashed !important; }
+button.give-card__amount { cursor: pointer; }
+button.give-card__amount:hover { border-color: var(--blue-2); background: var(--blue-pale); }
+.give-card__amount.is-selected {
+  border-color: var(--blue-6);
+  background: var(--blue-6);
+  color: var(--white);
+}
+.give-card__amount--any { border-style: dashed; }
+.give-card__amount--any.is-selected { border-style: solid; }
 
 .give-card .btn { margin-top: auto; }
 .give-card__note { font-size: 13px; font-weight: 500; color: var(--text-6); text-align: center; }
+
+.enquiry__confirm {
+  padding: 14px 18px;
+  border: 1px solid var(--mint-1);
+  border-radius: 12px;
+  background: #f1fbf6;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--mint-ink);
+}
+.enquiry__confirm a { color: inherit; font-weight: 700; text-decoration: underline; }
 
 .give__secure { font-size: 14px; line-height: 1.5; color: var(--text-7); max-width: 760px; }
 .give__secure a { color: var(--blue-6); font-weight: 700; text-decoration: underline; }
