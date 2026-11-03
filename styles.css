@@ -2549,14 +2549,6 @@ h1, h2, h3, h4, p, figure, figcaption, blockquote { margin: 0; }
 .reading__back { font-size: 14px; font-weight: 600; color: var(--blue-6); }
 
 .prose { flex: 1 1 0; min-width: 0; max-width: 856px; display: flex; flex-direction: column; gap: 34px; }
-.disclosure {
-  padding: 14px 18px;
-  border-radius: 12px;
-  background: #fffaef;
-  font-size: 14px;
-  line-height: 1.4;
-  color: var(--text-7);
-}
 .prose__section { display: flex; flex-direction: column; gap: 18px; }
 .prose__section h2 {
   font-family: var(--font-display);
@@ -2567,6 +2559,76 @@ h1, h2, h3, h4, p, figure, figcaption, blockquote { margin: 0; }
 }
 .prose__section p,
 .prose__closing { font-size: 18px; line-height: 1.48; color: var(--text-8); }
+
+/* A list inside an article — the options he put to the room, the habits. */
+.prose__list { display: flex; flex-direction: column; gap: 10px; padding-left: 4px; list-style: none; }
+.prose__list li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 18px;
+  line-height: 1.48;
+  color: var(--text-8);
+}
+.prose__list li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 11px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--blue-6);
+}
+
+/* A line worth pulling out of the paragraph flow. */
+.prose__quote {
+  margin: 4px 0;
+  padding: 4px 0 4px 22px;
+  border-left: 4px solid var(--yellow-6);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+  color: var(--ink);
+}
+
+/* Photographs from the session itself. */
+.prose__figure { display: flex; flex-direction: column; gap: 10px; }
+.prose__figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+  display: block;
+}
+.prose__figure figcaption { font-size: 14px; line-height: 1.45; color: var(--text-6); }
+
+/* Who led the session. */
+.about-speaker {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 28px;
+  border: 1px solid var(--hairline-2);
+  border-radius: 20px;
+  background: var(--surface-tint);
+}
+.about-speaker h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--ink);
+}
+.about-speaker p { font-size: 16px; line-height: 1.55; color: var(--text-7); }
+.about-speaker a {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--blue-6);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 
 .takeaways { display: flex; flex-direction: column; gap: 20px; padding: 28px; border-radius: 20px; background: var(--blue-1); }
 .takeaways h2 {
@@ -3080,6 +3142,9 @@ h1, h2, h3, h4, p, figure, figcaption, blockquote { margin: 0; }
   .article-intro__figure img { height: 240px; border-radius: 16px; }
   .reading__inner { padding-block: 8px 56px; }
   .prose__section h2, .reflection h2 { font-size: 23px; }
+  .prose__list li { font-size: 16px; }
+  .prose__quote { font-size: 19px; padding-left: 16px; }
+  .about-speaker { padding: 22px; }
   .prose__section p, .prose__closing, .reflection p { font-size: 16px; }
   .takeaways, .reflection { padding: 22px; }
   .involved-hero__inner { padding-block: 36px 40px; }

@@ -1,154 +1,188 @@
 /* =========================================================================
    DILP Wednesdays — leadership articles.
-   Transcribed from the Figma designs (hub 2097:14720, article 2097:14979).
-   The library status and publishing-note lines are written to match the
-   design's voice; everything else is the designed copy.
+
+   Content provenance
+   ------------------
+   Every article here is a write-up of a session that actually took place.
+   Photography comes from the session itself. Nothing is illustrative.
+
+   Adding an article
+   -----------------
+   1. Add an entry to `articles` (the card shown on the hub).
+   2. Add the full text to `fullArticles`, keyed by the same slug.
+   3. Set `published: true` on the card. Exactly one card carries
+      `featured: true`; that one fills the "In focus" slot on the hub.
+   4. Run `node tools/build-site.mjs`.
+
+   A card without an entry in `fullArticles` renders as "Coming soon"
+   rather than a dead link.
+
+   Section blocks
+   --------------
+   Each section's `blocks` array takes:
+     ['p',      'a paragraph']
+     ['list',   ['first item', 'second item']]
+     ['quote',  'a pulled line']
+     ['figure', 'file.webp', 'alt text', 'caption']
    ========================================================================= */
 
 export const articles = [
   {
-    slug: 'listen-first-lead-better',
-    topic: 'Communication',
+    slug: 'from-problems-to-possibilities',
+    topic: 'Innovation',
     readTime: '7 min read',
-    title: 'Listen first. Lead better.',
-    summary: 'Build trust by listening to understand, not just waiting for your turn to speak.',
-    image: 'article-card-a.webp',
-    imageAlt: 'A DILP facilitator leading a session in front of a whiteboard.',
-  },
-  {
-    slug: 'lead-before-you-have-a-title',
-    topic: 'Self-leadership',
-    readTime: '6 min read',
-    title: 'Lead before you have a title',
-    summary: 'Turn everyday responsibility into a practical leadership habit.',
-    image: 'article-card-b.webp',
-    imageAlt: 'DILP participants working together during a session.',
+    title: 'From problems to possibilities',
+    summary:
+      'Emmanuel Ambrose Bida on why innovation starts with who has the problem, not with the technology.',
+    image: 'article-ambrose-card.webp',
+    imageAlt: 'Emmanuel Ambrose Bida presenting during the DILP Wednesday session.',
     published: true,
     featured: true,
-    featuredSummary: 'Leadership begins in the small things: taking ownership, keeping your word and making room for others.',
-    featuredMeta: 'Self-leadership · 6 min read',
-  },
-  {
-    slug: 'feedback-that-helps-people-grow',
-    topic: 'Communication',
-    readTime: '5 min read',
-    title: 'Feedback that helps people grow',
-    summary: 'Move from vague criticism to specific, supportive conversations.',
-    image: 'article-card-c.webp',
-    imageAlt: 'A DILP participant speaking during a group discussion.',
-  },
-  {
-    slug: 'integrity-is-built-in-small-decisions',
-    topic: 'Character & values',
-    readTime: '6 min read',
-    title: 'Integrity is built in small decisions',
-    summary: 'Choose a clear next step when the easy option is not the right one.',
-    image: 'article-card-d.webp',
-    imageAlt: 'DILP participants listening during a leadership session.',
-  },
-  {
-    slug: 'a-team-is-more-than-a-group',
-    topic: 'Teamwork',
-    readTime: '5 min read',
-    title: 'A team is more than a group',
-    summary: 'Agree on roles, share responsibility and make progress together.',
-    image: 'article-card-c.webp',
-    imageAlt: 'A DILP team working through a problem together.',
-  },
-  {
-    slug: 'make-reflection-a-weekly-habit',
-    topic: 'Growth & purpose',
-    readTime: '4 min read',
-    title: 'Make reflection a weekly habit',
-    summary: 'Pause, notice what is changing and turn a lesson into your next action.',
-    image: 'article-card-a.webp',
-    imageAlt: 'A DILP participant reflecting during a Wednesday session.',
+    featuredSummary:
+      'Which question best starts innovation? Not which technology is trending, but who experiences the problem and why.',
+    featuredMeta: 'Innovation · 7 min read',
   },
 ];
 
-export const TOPICS = [
-  'All topics',
-  'Self-leadership',
-  'Communication',
-  'Character & values',
-  'Teamwork',
-  'Growth & purpose',
-];
+export const TOPICS = ['All topics', 'Innovation'];
 
-/** The one article written out in full, per the Figma article page. */
-export const fullArticle = {
-  slug: 'lead-before-you-have-a-title',
-  topic: 'Self-leadership',
-  series: 'DILP WEDNESDAYS',
-  title: ['Lead before you', 'have a title'],
-  standfirst:
-    'You do not need a position to make a positive difference. Start with the promises you keep, the problems you own and the people you bring along.',
-  byline: 'DILP by Cedars',
-  meta: '6 min read · Example article',
-  image: 'article-hero.webp',
-  imageAlt: 'A DILP participant speaking during a Wednesday leadership session.',
-  captionLeft: 'DILP community photography · Leadership & Character',
-  captionRight: 'Programme image; not a record of this example session.',
-  disclosure:
-    'An example for future DILP Wednesday updates. These are illustrative learning notes, not a recap or transcript of a session that has taken place.',
-  contents: [
-    ['The leadership mindset', 'leadership-mindset'],
-    ['Three key takeaways', 'key-takeaways'],
-    ['Make responsibility visible', 'responsibility'],
-    ['Bring others into the work', 'bring-others'],
-    ['Your next small step', 'next-step'],
-  ],
-  lens: {
-    label: 'THE WEDNESDAY LENS',
-    format: 'Mentor-led learning · Self-leadership & responsibility',
-    note: 'Mentor and date to be added with a future session update.',
-  },
-  sections: [
-    {
-      id: 'leadership-mindset',
-      heading: 'Leadership is a practice, not a position',
-      paragraphs: [
-        'It is easy to imagine leadership as something that begins when someone puts you in charge. In everyday work, it often starts earlier: noticing that a teammate is stuck, asking a useful question or doing the task you said you would do. These actions give people a reason to trust you before there is any title attached.',
-        'For DILP’s Leadership & Character focus, this is a useful starting point. Technical skills help you contribute to a project; the way you use those skills shapes the experience of everyone around you. The question is not only “What can I do?” It is also “How can I help this group move forward?”',
-      ],
-    },
-    {
-      id: 'responsibility',
-      heading: 'Make responsibility visible',
-      paragraphs: [
-        'Consider a team preparing a project presentation. Everyone assumes someone else will check the final slides. A small act of leadership is to name the gap, ask who can help and agree on a clear owner. You do not need to take over the project. You need to make the next step easier to understand.',
-        'Responsibility becomes useful when it is specific. Replace “I will help with the presentation” with “I will check the opening slides and share my notes before our next review.” The second promise gives the team something it can plan around. Before you commit, check your time and capacity; an honest, smaller promise is better than an impressive one you cannot keep.',
-        'If you fall behind, say so early. Explain what has changed, what you have completed and what support or revised plan would help. Accountability is not pretending everything is fine. It is staying involved in finding a workable way forward.',
-      ],
-    },
-    {
-      id: 'bring-others',
-      heading: 'Bring others into the work',
-      paragraphs: [
-        'Taking initiative does not mean becoming the loudest person in the room. Ask whose perspective is missing. Invite a quieter teammate to explain their approach, and give them enough time to respond. When someone makes a useful contribution, recognise the work rather than claiming the credit.',
-        'You can also offer support without removing someone’s ownership. Ask “Would it help to think through the first step together?” instead of immediately doing the task for them. That small difference keeps learning in the hands of the person doing the work and makes collaboration more respectful.',
-      ],
-    },
-  ],
-  takeaways: {
-    title: 'Three ideas to take with you',
-    items: [
-      ['Own the next useful action.', 'Look for a contribution you can make, rather than waiting to be selected.'],
-      ['Make your word dependable.', 'Agree on a realistic commitment and communicate early when it changes.'],
-      ['Create room for others.', 'Leadership is not doing everything yourself; it is helping others contribute.'],
+/* ------------------------------------------------------- the written-out articles */
+
+export const fullArticles = {
+  'from-problems-to-possibilities': {
+    slug: 'from-problems-to-possibilities',
+    topic: 'Innovation',
+    series: 'DILP WEDNESDAYS',
+    title: ['From problems to possibilities', 'with Emmanuel Ambrose Bida'],
+    standfirst:
+      'Which question best starts innovation? Most hands went up for the right one — who experiences the problem, and why.',
+    byline: 'By Desmond Jumbo',
+    meta: '3 November 2026 · 7 min read',
+    image: 'article-ambrose-hero.webp',
+    imageAlt:
+      'Emmanuel Ambrose Bida presenting the From Problems to Possibilities session to DILP participants.',
+    captionLeft: 'DILP Wednesdays · 30 September 2026',
+    captionRight: 'Cedars Productivity Centre, Bonny Island.',
+    contents: [
+      ['It starts with the question', 'the-question'],
+      ['Three ideas to take with you', 'key-takeaways'],
+      ['What innovation is, and what it isn’t', 'what-innovation-is'],
+      ['Treat the cause, not the symptom', 'cause-not-symptom'],
+      ['Change the question', 'change-the-question'],
+      ['Write a strong problem statement', 'problem-statement'],
+      ['Five habits of people who innovate', 'five-habits'],
     ],
-  },
-  reflection: {
-    label: 'PAUSE. REFLECT. PUT IT TO WORK.',
-    heading: 'Your next small step',
-    prompts: [
-      'Notice: Where am I waiting for permission to make a useful contribution?',
-      'Choose: What is one realistic promise I can make to my team this week?',
-      'Act: Write down the action, who it helps and when I will check back.',
+    lens: {
+      label: 'THE WEDNESDAY LENS',
+      format: 'Mentor-led session · Innovation & problem-solving',
+      note: 'Emmanuel Ambrose Bida · 30 September 2026 · Cedars Productivity Centre, Bonny Island.',
+    },
+    sections: [
+      {
+        id: 'the-question',
+        heading: 'It starts with the question',
+        blocks: [
+          ['p', 'Ambrose opened with a quiz. Which question best starts innovation? Is it which technology is trending, how to make something look impressive, or who experiences the problem and why? Most hands went up for the last option. That was the right answer.'],
+          ['p', 'He used smoking to explain why. Before you decide smokers need rehab, ask why they started smoking in the first place. Not everybody smokes. So what makes these people different?'],
+          ['quote', 'Those are the kind of questions you ask in innovation.'],
+        ],
+      },
+      {
+        id: 'what-innovation-is',
+        heading: 'What innovation is, and what it isn’t',
+        blocks: [
+          ['p', 'His second quiz offered three options: building a new app because the technology is cool, buying a robot to demo, or redesigning a frustrating process so people can complete it in half the time. Only the redesign counted.'],
+          ['quote', 'Innovation is a useful, new, improved way of creating value.'],
+          ['p', 'It doesn’t have to be a cure for cancer. And being first is interesting, but it’s not enough. Sometimes you try it and find out why nobody has.'],
+          ['p', 'Innovation also continues after launch, while people are using the product. He pointed to WhatsApp. Shared videos used to lose quality, and that is getting better because the company keeps improving the experience.'],
+          ['figure', 'article-ambrose-feature.webp', 'Emmanuel Ambrose Bida presenting a slide on diverging, converging and testing ideas.', 'There are no dumb answers. There are only unstated assumptions.'],
+        ],
+      },
+      {
+        id: 'cause-not-symptom',
+        heading: 'Treat the cause, not the symptom',
+        blocks: [
+          ['p', 'Problem discovery is usually the first step, and it rarely goes in a straight line. Ambrose warned against solving the tip of the iceberg. Say you build a tool and nobody uses it. “No usage” is a symptom, and printing flyers for adverts only treats the symptom. Ask why people aren’t using it. Then look for patterns in who uses it most, when they use it and how often.'],
+          ['p', 'You also need other people to check what you find. Negative feedback is the most useful kind. If you hate a restaurant’s food and walk away without a word, you haven’t helped the restaurant. Feedback is optional, so when someone gives it, treat it as data to learn from, not an attack.'],
+        ],
+      },
+      {
+        id: 'change-the-question',
+        heading: 'Change the question before you change the system',
+        blocks: [
+          ['p', 'Next, he asked which problem statement gave the best starting point:'],
+          ['list', [
+            'Young people don’t have enough access to jobs',
+            'Young people need jobs',
+            'Young people struggle to know which opportunities match their skills',
+            'We should build a job website for young people',
+          ]],
+          ['p', 'The third points to a root cause. The last jumps straight to a solution, a temptation he said innovators face all the time.'],
+          ['quote', 'Good innovators change the question before changing the system.'],
+          ['p', 'For example, instead of “Let’s build an app”, ask what is happening that an app might improve. If people abandon a process halfway, find out what makes them drop off. Is it time, trust, complexity or cost?'],
+          ['figure', 'article-ambrose-ideate.webp', 'DILP participants in breakout groups beneath the Incubate, Innovate, Ideate wall.', 'Breakout groups taking the questions back to their own ideas.'],
+        ],
+      },
+      {
+        id: 'problem-statement',
+        heading: 'Write a strong problem statement',
+        blocks: [
+          ['p', 'Problem statements are standard practice in industry. Before any initiative goes ahead, someone will ask for one. A strong statement names:'],
+          ['list', [
+            'who is affected',
+            'what they struggle to do',
+            'the root cause, and',
+            'the impact',
+          ]],
+          ['p', '“We need an app to improve transport” is weak. Compare it with this: “Commuters trying to reach work on time can’t rely on when the bus will arrive because schedule information is fragmented, leading to lateness and disappointment.”'],
+          ['p', 'Even the strong version doesn’t mean you need an app. It’s where root cause analysis begins.'],
+          ['figure', 'article-ambrose-breakout.webp', 'A DILP participant explaining an idea to her group during the ideation exercise.', 'Ideation in the room: working a problem before reaching for a solution.'],
+        ],
+      },
+      {
+        id: 'five-habits',
+        heading: 'Five habits of people who innovate',
+        blocks: [
+          ['p', 'Ambrose described these as “not personality traits, behaviours you can practise”:'],
+          ['list', [
+            'Curious people ask why something is the way it is and what would make it better.',
+            'Observant people look at what is actually happening.',
+            'Empathetic people ask who feels the pain.',
+            'Experimental people test their ideas.',
+            'Courageous people ask, “What if my idea is wrong?”',
+          ]],
+          ['p', 'Courage matters because pushback is common. You can test an idea with friends and community, present it to stakeholders and still watch them say no.'],
+          ['p', 'Ambrose linked this to leadership. Priorities differ at every level. What matters to a managing director isn’t what matters to a general manager, and their KPIs are different. You may present a project to your manager, and the answer could simply be “we cannot prioritise it at the moment”. Some leaders won’t tell you that the real reason is money.'],
+          ['figure', 'article-ambrose-floor.webp', 'Emmanuel Ambrose Bida walking among seated participants during the session.', 'Working the room as the groups reported back.'],
+        ],
+      },
     ],
-    followUp: 'At your next check-in, ask: Did my action make the work clearer or easier for someone else?',
+    takeaways: {
+      title: 'Three ideas to take with you',
+      items: [
+        ['Start with who has the problem.', 'Not which technology is trending, and not how to make something look impressive.'],
+        ['Treat the cause, not the symptom.', '“No usage” is a symptom. Ask why, then look for patterns in who, when and how often.'],
+        ['Change the question before the system.', 'Ask what is happening that a solution might improve, rather than what to build.'],
+      ],
+    },
+    reflection: {
+      label: 'PAUSE. REFLECT. PUT IT TO WORK.',
+      heading: 'Your next small step',
+      prompts: [
+        'Notice: what problem am I about to solve without asking who actually has it?',
+        'Choose: what is the smallest way I could test the idea this week?',
+        'Act: write the problem statement — who is affected, what they struggle to do, the root cause and the impact.',
+      ],
+      followUp: 'At your next check-in, ask: did I change the question, or only the system?',
+    },
+    closing:
+      'So don’t wait for the perfect answer. Ask what the smallest way to test your idea is. “Done is better than perfect,” he said — and that doesn’t mean settling for mediocrity.',
+    about: {
+      name: 'Emmanuel Ambrose Bida',
+      text: 'A Digital Transformation Analyst and Project Manager in the Digital & Innovations Department at Nigeria LNG (NLNG), Bonny. He started his career as a data analyst. His work now includes digital twin projects that use predictive analytics to monitor assets. He has led Power BI and Power Apps bootcamps that graduated over 150 employees, managed a company-wide hackathon and helped set up an innovation hub.',
+      linkLabel: 'Connect on LinkedIn',
+      linkHref: 'https://www.linkedin.com/in/emmanuel-ambrose-bida%C2%AE-713b3b1b3/',
+    },
+    credit: 'Leadership & Character · DILP by Cedars',
   },
-  closing:
-    'Leadership does not have to begin with a big moment. Begin with a small, useful action. Keep your word, learn from the response and do it again.',
-  credit: 'Leadership & Character · DILP by Cedars',
 };

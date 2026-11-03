@@ -16,7 +16,7 @@ import { writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { tracks, WEEKS } from './tracks.data.mjs';
-import { articles, TOPICS, fullArticle } from './articles.data.mjs';
+import { articles, TOPICS, fullArticles } from './articles.data.mjs';
 import { ticker, header, footer, head, esc, pad, numberWord, PARTNERSHIPS_EMAIL, PAYSTACK } from './chrome.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -292,11 +292,12 @@ function articleCard(a, base) {
 function articlesHub() {
   const base = '../';
   const feature = articles.find((a) => a.featured);
+  const featureArt = feature ? fullArticles[feature.slug] : null;
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
-${head(base, 'DILP Wednesdays — Leadership hub | Cedars Productivity Centre', 'Ideas to think about. Habits to practise. A home for learning from DILP’s mentor-led Wednesday leadership sessions.', 'article-feature.webp')}
+${head(base, 'DILP Wednesdays — Leadership hub | Cedars Productivity Centre', 'Ideas to think about. Habits to practise. A home for learning from DILP’s mentor-led Wednesday leadership sessions.', featureArt ? featureArt.image : 'article-ambrose-hero.webp')}
 </head>
 <body>
 
@@ -321,7 +322,7 @@ ${header(base, 'leadership')}
         </div>
         <div class="masthead__intro">
           <p>Ideas to think about. Habits to practise. A home for learning from DILP&rsquo;s mentor-led Wednesday leadership sessions.</p>
-          <p class="masthead__note">Example articles for future session updates. Mentor details and session dates will be added after each session.</p>
+          <p class="masthead__note">Written up after each Wednesday session, with the mentor who led it.</p>
         </div>
       </div>
 
@@ -329,7 +330,7 @@ ${header(base, 'leadership')}
         <div class="feature__story">
           <div class="feature__label">
             <span class="feature__badge">IN FOCUS</span>
-            <span class="feature__series">DILP Wednesdays · Example article</span>
+            <span class="feature__series">${esc(feature.featuredMeta)}</span>
           </div>
           <div class="feature__copy">
             <h2><a class="card-link" href="${feature.slug}.html">${esc(feature.title)}</a></h2>
@@ -341,8 +342,8 @@ ${header(base, 'leadership')}
           </div>
         </div>
         <div class="feature__photo">
-          <img src="${base}assets/img/article-feature.webp" alt="A DILP participant listening during a Wednesday leadership session." loading="lazy">
-          <span class="feature__caption">From the DILP community · Programme photography</span>
+          <img src="${base}assets/img/${esc(featureArt ? featureArt.image : feature.image)}" alt="${esc(featureArt ? featureArt.imageAlt : feature.imageAlt)}" loading="lazy">
+          <span class="feature__caption">${esc(featureArt ? featureArt.captionLeft : 'DILP programme photography')}</span>
         </div>
       </article>
     </div>
@@ -394,15 +395,31 @@ ${footer(base)}
 
 /* ====================================================== single article page */
 
-function articlePage() {
+function articlePage(a) {
   const base = '../';
-  const a = fullArticle;
   const related = articles.filter((x) => x.slug !== a.slug).slice(0, 3);
   const [first, ...rest] = a.sections;
 
+  const blockHtml = (b) => {
+    const [kind] = b;
+    if (kind === 'list') {
+      return `<ul class="prose__list">
+            ${b[1].map((i) => `<li>${esc(i)}</li>`).join('\n            ')}
+          </ul>`;
+    }
+    if (kind === 'quote') return `<blockquote class="prose__quote">${esc(b[1])}</blockquote>`;
+    if (kind === 'figure') {
+      return `<figure class="prose__figure">
+            <img src="${base}assets/img/${esc(b[1])}" alt="${esc(b[2])}" loading="lazy">
+            <figcaption>${esc(b[3])}</figcaption>
+          </figure>`;
+    }
+    return `<p>${esc(b[1])}</p>`;
+  };
+
   const sectionHtml = (s) => `<section class="prose__section" id="${s.id}">
           <h2>${esc(s.heading)}</h2>
-          ${s.paragraphs.map((p) => `<p>${esc(p)}</p>`).join('\n          ')}
+          ${s.blocks.map(blockHtml).join('\n          ')}
         </section>`;
 
   return `<!DOCTYPE html>
@@ -470,8 +487,6 @@ ${header(base, 'leadership')}
       </aside>
 
       <div class="prose">
-        <p class="disclosure">${esc(a.disclosure)}</p>
-
         ${sectionHtml(first)}
 
         <div class="takeaways" id="key-takeaways">
@@ -497,6 +512,13 @@ ${header(base, 'leadership')}
 
         <p class="prose__closing">${esc(a.closing)}</p>
 
+        ${a.about ? `<aside class="about-speaker">
+          <span class="editorial__label">ABOUT THE SPEAKER</span>
+          <h2>${esc(a.about.name)}</h2>
+          <p>${esc(a.about.text)}</p>
+          <a href="${esc(a.about.linkHref)}" target="_blank" rel="noopener noreferrer">${esc(a.about.linkLabel)} &nearr;</a>
+        </aside>` : ''}
+
         <div class="prose__foot">
           <span>${esc(a.credit)}</span>
           <a href="#main">Share this article ↗</a>
@@ -505,7 +527,7 @@ ${header(base, 'leadership')}
     </div>
   </section>
 
-  <section class="library library--related">
+  ${related.length ? `<section class="library library--related">
     <div class="shell library__inner">
       <div class="library__head">
         <h2 class="related__heading">Keep learning</h2>
@@ -515,7 +537,7 @@ ${header(base, 'leadership')}
         ${related.map((r) => articleCard(r, base)).join('\n        ')}
       </div>
     </div>
-  </section>
+  </section>` : ''}
 </main>
 ${footer(base)}
 
@@ -818,7 +840,7 @@ ${footer(base)}
 
 for (const t of tracks) write(`tracks/${t.slug}.html`, trackPage(t));
 write('articles/index.html', articlesHub());
-write(`articles/${fullArticle.slug}.html`, articlePage());
+Object.values(fullArticles).forEach((a) => write(`articles/${a.slug}.html`, articlePage(a)));
 write('get-involved.html', getInvolvedPage());
 
-console.log(`\n${tracks.length} track pages + 2 article pages + get-involved generated.`);
+console.log(`\n${tracks.length} track pages + ${Object.keys(fullArticles).length} article(s) + the hub + get-involved generated.`);
