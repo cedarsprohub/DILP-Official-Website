@@ -297,7 +297,7 @@ function articlesHub() {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
-${head(base, 'DILP Wednesdays — Leadership hub | Cedars Productivity Centre', 'Ideas to think about. Habits to practise. A home for learning from DILP’s mentor-led Wednesday leadership sessions.', featureArt ? featureArt.image : 'article-ambrose-hero.webp')}
+${head(base, 'DILP Wednesdays: Leadership hub | Cedars Productivity Centre', 'Write-ups from the mentor-led Wednesday leadership sessions at DILP.', featureArt ? featureArt.image : 'article-ambrose-hero.webp')}
 </head>
 <body>
 
@@ -319,10 +319,6 @@ ${header(base, 'leadership')}
         <div class="masthead__title">
           <span class="editorial__label">LEADERSHIP &amp; CHARACTER</span>
           <h1>Wednesdays for<br><span class="accent">the leader in you</span><span class="masthead__dot" aria-hidden="true"></span></h1>
-        </div>
-        <div class="masthead__intro">
-          <p>Ideas to think about. Habits to practise. A home for learning from DILP&rsquo;s mentor-led Wednesday leadership sessions.</p>
-          <p class="masthead__note">Written up after each Wednesday session, with the mentor who led it.</p>
         </div>
       </div>
 
@@ -425,7 +421,7 @@ function articlePage(a) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
-${head(base, `${a.title.join(' ')} — DILP Wednesdays`, a.standfirst, a.image)}
+${head(base, `${a.title.join(' ')} | DILP Wednesdays`, a.standfirst, a.image)}
 </head>
 <body>
 

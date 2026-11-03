@@ -76,7 +76,7 @@ export function header(base = '', active = '', slug = '') {
   return `
 <header class="header" data-header>
   <div class="shell header__inner">
-    <a class="logo" href="${base}index.html" aria-label="DILP — home">
+    <a class="logo" href="${base}index.html" aria-label="DILP home">
       <span class="logo__plate">
         <img class="logo__img" src="${base}assets/img/dilp-logo.png" width="186" height="68" alt="DILP">
         <span class="logo__word" aria-hidden="true">DILP</span>

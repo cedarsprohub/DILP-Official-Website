@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building MVP: turning ideas into testable products with Oluchukwu Okafor | DILP Wednesdays</title>
+<meta name="description" content="Ideas are easy. Building something people come back to is the hard part.">
+<meta name="theme-color" content="#0040a1">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Building MVP: turning ideas into testable products with Oluchukwu Okafor | DILP Wednesdays">
+<meta property="og:description" content="Ideas are easy. Building something people come back to is the hard part.">
+<meta property="og:image" content="../assets/img/article-oluchukwu-hero.webp">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Nunito+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="ticker" aria-label="Programme announcements">
+  <div class="marquee" style="--marquee-duration: 42s" data-marquee>
+    <div class="marquee__track" data-marquee-track>
+      <p class="ticker__item">APPLICATIONS ARE CURRENTLY CLOSED <img class="ticker__dot" src="../assets/svg/ticker-dot.svg" alt="" aria-hidden="true"></p>
+      <p class="ticker__item">12 WEEKS · BONNY ISLAND <img class="ticker__dot" src="../assets/svg/ticker-dot.svg" alt="" aria-hidden="true"></p>
+      <p class="ticker__item">NO COST TO SELECTED PARTICIPANTS <img class="ticker__dot" src="../assets/svg/ticker-dot.svg" alt="" aria-hidden="true"></p>
+      <p class="ticker__item">MENTOR-LED · PROJECT-BASED <img class="ticker__dot" src="../assets/svg/ticker-dot.svg" alt="" aria-hidden="true"></p>
+      <p class="ticker__item">EIGHT TRACKS TO CHOOSE FROM <img class="ticker__dot" src="../assets/svg/ticker-dot.svg" alt="" aria-hidden="true"></p>
+      <p class="ticker__item">DELIVERED BY CEDARS PRODUCTIVITY CENTRE <img class="ticker__dot" src="../assets/svg/ticker-dot.svg" alt="" aria-hidden="true"></p>
+    </div>
+  </div>
+</div>
+
+<header class="header" data-header>
+  <div class="shell header__inner">
+    <a class="logo" href="../index.html" aria-label="DILP home">
+      <span class="logo__plate">
+        <img class="logo__img" src="../assets/img/dilp-logo.png" width="186" height="68" alt="DILP">
+        <span class="logo__word" aria-hidden="true">DILP</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__link" href="../index.html">Home</a>
+      <div class="nav__group" data-dropdown data-open="false">
+        <button class="nav__link" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="programmes-menu" data-dropdown-toggle>
+          Programmes
+          <img class="nav__chevron" src="../assets/svg/nav-chevron.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="dropdown" id="programmes-menu" role="menu">
+          <span class="dropdown__label">EIGHT TRACKS</span>
+          <a role="menuitem" href="../tracks/cybersecurity.html">Cybersecurity &amp; Digital Safety</a>
+          <a role="menuitem" href="../tracks/front-end-development.html">Front-End Development</a>
+          <a role="menuitem" href="../tracks/back-end-development.html">Back-End Development</a>
+          <a role="menuitem" href="../tracks/product-design.html">Product Design</a>
+          <a role="menuitem" href="../tracks/graphic-design.html">Graphic Design</a>
+          <a role="menuitem" href="../tracks/ai-and-automation.html">AI &amp; Automation</a>
+          <a role="menuitem" href="../tracks/data-analytics.html">Data Analytics</a>
+          <a role="menuitem" href="../tracks/social-media-marketing.html">Social Media Marketing</a>
+        </div>
+      </div>
+      <a class="nav__link" href="../articles/index.html" aria-current="page">Leadership</a>
+      <a class="nav__link" href="../get-involved.html">Get Involved</a>
+    </nav>
+
+    <div class="header__actions">
+      <a class="btn btn--blue btn--nav" href="../get-involved.html">Get involved</a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu" data-burger>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu mirrors the desktop nav exactly: the same four
+       destinations, with Programmes expanding to the track list. -->
+  <div class="mobile-nav" id="mobile-nav" data-open="false">
+    <div class="shell">
+      <ul data-accordion>
+        <li><a href="../index.html">Home</a></li>
+        <li class="mobile-nav__group" data-open="false">
+          <button class="mobile-nav__toggle" type="button" aria-expanded="false" aria-controls="mobile-programmes" data-accordion-toggle>
+            Programmes
+            <span class="accordion__sign" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion__panel" id="mobile-programmes" role="region" aria-label="Tracks">
+            <div>
+              <ul class="mobile-nav__sub">
+                <li><a href="../tracks/cybersecurity.html">Cybersecurity &amp; Digital Safety</a></li>
+            <li><a href="../tracks/front-end-development.html">Front-End Development</a></li>
+            <li><a href="../tracks/back-end-development.html">Back-End Development</a></li>
+            <li><a href="../tracks/product-design.html">Product Design</a></li>
+            <li><a href="../tracks/graphic-design.html">Graphic Design</a></li>
+            <li><a href="../tracks/ai-and-automation.html">AI &amp; Automation</a></li>
+            <li><a href="../tracks/data-analytics.html">Data Analytics</a></li>
+            <li><a href="../tracks/social-media-marketing.html">Social Media Marketing</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li><a href="../articles/index.html">Leadership</a></li>
+        <li><a href="../get-involved.html">Get Involved</a></li>
+      </ul>
+      <a class="btn btn--blue btn--lg" href="../get-involved.html">Get involved</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="article-intro">
+    <div class="shell article-intro__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="index.html">Leadership</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">DILP Wednesdays</span>
+      </nav>
+
+      <div class="article-intro__headline">
+        <div class="article-intro__labels">
+          <span class="topic topic--static">Product</span>
+          <span class="editorial__label">DILP WEDNESDAYS</span>
+        </div>
+        <h1>Building MVP: turning ideas into testable products<br>with Oluchukwu Okafor</h1>
+        <p class="article-intro__standfirst">Ideas are easy. Building something people come back to is the hard part.</p>
+        <div class="article-intro__meta">
+          <span class="article-intro__byline">By Desmond Jumbo</span>
+          <span>3 November 2026 · 8 min read</span>
+          <a href="#main">Share ↗</a>
+        </div>
+      </div>
+
+      <figure class="article-intro__figure">
+        <img src="../assets/img/article-oluchukwu-hero.webp" alt="Oluchukwu Okafor addressing DILP participants during the Building MVP session.">
+        <figcaption>
+          <span>DILP Wednesdays</span>
+          <span>Cedars Productivity Centre, Bonny Island.</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="reading">
+    <div class="shell reading__inner">
+      <aside class="reading__aside">
+        <nav class="contents" aria-label="In this article">
+          <span class="editorial__label">IN THIS ARTICLE</span>
+          <a href="#ai-paradox" class="is-current">The AI paradox</a>
+          <a href="#key-takeaways">Three ideas to take with you</a>
+          <a href="#define-the-problem">Define the problem precisely</a>
+          <a href="#build-with-others">Build with other people</a>
+          <a href="#generate-and-rank">Generate ideas, rank them, set a deadline</a>
+          <a href="#prototype-and-test">Prototype, then test with real people</a>
+          <a href="#three-mindsets">Three mindsets for builders</a>
+        </nav>
+
+        <div class="lens">
+          <span class="editorial__label">THE WEDNESDAY LENS</span>
+          <p class="lens__format">Mentor-led session · Product &amp; MVPs</p>
+          <p class="lens__note">Oluchukwu Okafor · Cedars Productivity Centre, Bonny Island.</p>
+        </div>
+
+        <a class="reading__back" href="index.html">← All Wednesday articles</a>
+      </aside>
+
+      <div class="prose">
+        <section class="prose__section" id="ai-paradox">
+          <h2>The AI paradox</h2>
+          <p>Oluchukwu Okafor opened with a show of hands. Who had ever had an idea for an app, a website or a product? Hands went up. Then he asked people to keep their hands up only if they had built it in front of real users. Some came down.</p>
+          <blockquote class="prose__quote">It’s very easy to have an idea, but it’s hard to actually build out the idea in a way that users actually want to use it.</blockquote>
+          <p>Building an app used to mean months learning React Native or Kotlin, or paying a developer, then weeks waiting for a first version. Now you describe what you want in plain language, and AI builds something that works, right?</p>
+          <p>Yet most people still use the same products. “There’s no new chat app that most people use other than WhatsApp,” he said. If building is this easy, where are the new products people use every day?</p>
+          <p>He pointed to three marks of a good product:</p>
+          <ul class="prose__list">
+            <li>It solves a real problem.</li>
+            <li>People come back without reminders.</li>
+            <li>It works reliably.</li>
+          </ul>
+          <p>AI has mostly handled the last one. Craigslist looks plain, but lots of people use it, and it makes millions of dollars a year because it solves a problem people have.</p>
+          <p>AI can’t understand your specific users. This is especially true in Africa, because most of the data used to train it didn’t come from our countries. It can’t decide what matters in your context, and it can’t tell whether the product works for the people you’re building for.</p>
+          <blockquote class="prose__quote">Think of AI as an amplifier. It’s amplifying what is already there, but it’s not replacing it.</blockquote>
+        </section>
+
+        <div class="takeaways" id="key-takeaways">
+          <h2>Three ideas to take with you</h2>
+          <div class="takeaway">
+            <span class="takeaway__num">01</span>
+            <div>
+              <p class="takeaway__principle">Ideas are easy. Built things are not.</p>
+              <p class="takeaway__explanation">Building has never been cheaper, and yet few new products are the ones people reach for every day.</p>
+            </div>
+          </div>
+          <div class="takeaway">
+            <span class="takeaway__num">02</span>
+            <div>
+              <p class="takeaway__principle">AI amplifies, it doesn’t replace.</p>
+              <p class="takeaway__explanation">It can’t understand your users, and most of its training data didn’t come from our countries.</p>
+            </div>
+          </div>
+          <div class="takeaway">
+            <span class="takeaway__num">03</span>
+            <div>
+              <p class="takeaway__principle">Define the problem before you build.</p>
+              <p class="takeaway__explanation">Who is struggling, with what, in what situation, what causes it, and what they currently do about it.</p>
+            </div>
+          </div>
+        </div>
+
+        <section class="prose__section" id="define-the-problem">
+          <h2>Define the problem precisely</h2>
+          <p>Most people start building before they know what they’re solving or what success looks like. He compared two problem statements.</p>
+          <p>Vague: people need a better way to save money.</p>
+          <p>Precise: young workers paid monthly run out of money by week three because they can’t see where it went.</p>
+          <p>The second one tells you these are salaried workers. It tells you the solution should work in weeks, not years. And it tells you the real problem is that they can’t see their spending.</p>
+          <p>His template asks five things:</p>
+          <ul class="prose__list">
+            <li>Who is struggling (target audience)</li>
+            <li>What they are struggling to do</li>
+            <li>In what situation</li>
+            <li>What causes it</li>
+            <li>What they currently do about it</li>
+          </ul>
+          <figure class="prose__figure">
+            <img src="../assets/img/article-oluchukwu-room.webp" alt="DILP participants listening during the Building MVP session." loading="lazy">
+            <figcaption>The room working through two versions of the same problem statement.</figcaption>
+          </figure>
+        </section>
+
+        <section class="prose__section" id="build-with-others">
+          <h2>Build with other people</h2>
+          <p>AI can make you think you can work alone. Oluchukwu disagreed. A partner keeps you to your deadlines because “most people are more willing to disappoint themselves than others.” Other people catch what you missed and cover the skills you lack.</p>
+          <p>Avoid relationships where only one person benefits. Don’t chase established founders on LinkedIn, who are unlikely to have time for you. Look for people at your level, heading the same way, with skills different from yours. Classmates, meetups, hackathons and online communities are good places to start. Agree up front on the timeline, weekly check-ins, rules and what each person gets.</p>
+        </section>
+
+        <section class="prose__section" id="generate-and-rank">
+          <h2>Generate ideas, rank them, and set a deadline</h2>
+          <blockquote class="prose__quote">The first idea you have in mind is not necessarily the best one.</blockquote>
+          <p>Write down ten or more ideas without judging them, wild and boring alike. Then score them, for example on impact, ease and confidence. Write the scores down so you can compare them with what actually happens.</p>
+          <p>Then set a deadline, because work fills the time you give it.</p>
+        </section>
+
+        <section class="prose__section" id="prototype-and-test">
+          <h2>Prototype, then test with real people</h2>
+          <p>A prototype can be a clickable mockup or a one-page website. It only has to be something people can try. When you test, give people a task and watch without guiding them. If you have to explain everything, it isn’t user-friendly yet. Ask open questions such as “What did you expect to happen?” so people don’t tailor their answers to what they think you want.</p>
+          <p>Also make sure to set your success criteria before testing. For a class calendar app, you should ask questions such as: can testers add a deadline without help? Do they use it again without being prompted? Do they share it with their class?</p>
+          <p>If the results meet your criteria, build a fuller product. If not, sharpen the problem and go round again. AI has made starting over much easier.</p>
+          <figure class="prose__figure">
+            <img src="../assets/img/article-oluchukwu-question.webp" alt="A DILP participant raising a point during the Building MVP session." loading="lazy">
+            <figcaption>Questions from the floor as the teams sized up their own ideas.</figcaption>
+          </figure>
+        </section>
+
+        <section class="prose__section" id="three-mindsets">
+          <h2>Three mindsets for builders</h2>
+          <p>First, building is a loop. Your first loop will be slow, messy and uncertain. By the fifth, you ask better questions. By the tenth, you go through the process faster. Oluchukwu once built a Sudoku solver that wasn’t successful at first, but it taught him search algorithms he later used to build a chess engine. “Failure is like a teacher to you,” he said.</p>
+          <p>Second, climb Jacob’s Ladder. Builders need to move between big ideas and implementation details. AI keeps you at the level of ideas, but to use it well, you need the details too. He suggested doing some projects manually, some with AI and some with both, the same way you learn mental maths before you use a calculator. If you rely on AI for everything, you never learn the details. Refusing to use it out of pride is also a mistake.</p>
+          <p>Third, treat life as a search space. If you lose your key, you don’t check under the bed and give up. Each failed attempt rules out a place to look.</p>
+        </section>
+
+        <div class="reflection" id="next-step">
+          <span class="editorial__label">PAUSE. REFLECT. PUT IT TO WORK.</span>
+          <h2>Your next small step</h2>
+          <p>Notice: what idea have I had that I’ve never put in front of a real user?</p>
+          <p>Choose: write the problem precisely, naming who struggles and what causes it.</p>
+          <p>Act: set a deadline, then put a rough prototype in front of three people this week.</p>
+          <hr>
+          <p class="reflection__follow">At your next check-in, ask: did I watch someone use it without explaining it to them?</p>
+        </div>
+
+        <p class="prose__closing">The four Cohort 2 teams are already working on a version of this. Each team picks a sector, community or organisation, finds a problem and builds a solution. His advice to them was to talk to the people you’re solving for before you decide what the problem is, then check your definition with them. “Most people are nice, so they don’t bite.”</p>
+
+        <aside class="about-speaker">
+          <span class="editorial__label">ABOUT THE SPEAKER</span>
+          <h2>Oluchukwu Okafor</h2>
+          <p>Ex-Microsoft, a researcher and a tech founder. He studied mechanical engineering and started coding at university, where he built games, a chess engine and other projects. He has since worked with top tech companies and on award-winning projects.</p>
+          <a href="https://www.linkedin.com/in/oluchukwu-okafor/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn &nearr;</a>
+        </aside>
+
+        <div class="prose__foot">
+          <span>Leadership &amp; Character · DILP by Cedars</span>
+          <a href="#main">Share this article ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="library library--related">
+    <div class="shell library__inner">
+      <div class="library__head">
+        <h2 class="related__heading">Keep learning</h2>
+        <a class="related__all" href="index.html">All Wednesday articles &rarr;</a>
+      </div>
+      <div class="article-grid">
+        <article class="article-card reveal">
+          <a class="article-card__media" href="from-problems-to-possibilities.html"><img src="../assets/img/article-ambrose-card.webp" alt="Emmanuel Ambrose Bida presenting during the DILP Wednesday session." loading="lazy"></a>
+          <div class="article-card__body">
+            <div class="article-card__meta">
+              <span class="article-card__topic">Innovation</span>
+              <span class="article-card__time">7 min read</span>
+            </div>
+            <h3><a class="card-link" href="from-problems-to-possibilities.html">From problems to possibilities</a></h3>
+            <p>Innovation starts with who has the problem, not with the technology.</p>
+            <div class="article-card__foot">
+              <span class="article-card__read">Read takeaways &rarr;</span>
+              <span class="article-card__note">Example article</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="shell footer__inner">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <div class="logo">
+          <span class="logo__plate">
+            <img class="logo__img" src="../assets/img/dilp-logo.png" width="186" height="68" alt="DILP">
+            <span class="logo__word" aria-hidden="true">DILP</span>
+          </span>
+        </div>
+        <p>A community-focused talent development programme by Cedars Productivity Centre.</p>
+      </div>
+
+      <nav class="footer__col" aria-label="Explore">
+        <span class="footer__label">EXPLORE</span>
+        <a href="../index.html#why">About Cedars</a>
+        <a href="../index.html#impact">Our Work</a>
+        <a href="../index.html#tracks">Programmes</a>
+      </nav>
+
+      <nav class="footer__col" aria-label="Programme">
+        <span class="footer__label">PROGRAMME</span>
+        <a href="../index.html#impact">Impact</a>
+        <a href="../get-involved.html">Get Involved</a>
+        <a href="../index.html#tracks">All eight tracks</a>
+      </nav>
+
+      <nav class="footer__col" aria-label="Leadership">
+        <span class="footer__label">LEADERSHIP</span>
+        <a href="../articles/index.html">DILP Wednesdays</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </nav>
+
+      <div class="footer__contact">
+        <a class="footer__email" href="mailto:hello@cedarsprohub.com">
+          <img src="../assets/svg/footer-arrow.svg" alt="" aria-hidden="true">
+          <span>hello@cedarsprohub.com</span>
+        </a>
+        <div class="footer__location">
+          <span class="footer__label">PROGRAMME LOCATION</span>
+          <span>Bonny Island, Rivers State, Nigeria</span>
+        </div>
+        <div class="chips">
+          <span class="chip-outline">Accredited provider</span>
+          <span class="chip-outline">Mentor-led</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__divider"></div>
+
+    <div class="footer__bottom">
+      <p>© 2025 Cedars Productivity Centre. All rights reserved.</p>
+      <div class="socials">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="X">X</a>
+        <a href="#" aria-label="Instagram">ig</a>
+        <a href="#" aria-label="YouTube">yt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

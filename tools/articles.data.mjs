@@ -1,10 +1,12 @@
 /* =========================================================================
-   DILP Wednesdays — leadership articles.
+   DILP Wednesdays: leadership articles.
 
    Content provenance
    ------------------
    Every article here is a write-up of a session that actually took place.
    Photography comes from the session itself. Nothing is illustrative.
+
+   House style: no em-dashes in article copy.
 
    Adding an article
    -----------------
@@ -32,21 +34,29 @@ export const articles = [
     topic: 'Innovation',
     readTime: '7 min read',
     title: 'From problems to possibilities',
-    summary:
-      'Emmanuel Ambrose Bida on why innovation starts with who has the problem, not with the technology.',
+    summary: 'Innovation starts with who has the problem, not with the technology.',
     image: 'article-ambrose-card.webp',
     imageAlt: 'Emmanuel Ambrose Bida presenting during the DILP Wednesday session.',
     published: true,
     featured: true,
-    featuredSummary:
-      'Which question best starts innovation? Not which technology is trending, but who experiences the problem and why.',
+    featuredSummary: 'Innovation starts with who has the problem, not with the technology.',
     featuredMeta: 'Innovation · 7 min read',
+  },
+  {
+    slug: 'turning-ideas-into-testable-products',
+    topic: 'Product',
+    readTime: '8 min read',
+    title: 'Turning ideas into testable products',
+    summary: 'Ideas are easy. Building something people come back to is the hard part.',
+    image: 'article-oluchukwu-card.webp',
+    imageAlt: 'Oluchukwu Okafor addressing the room during the DILP Wednesday session.',
+    published: true,
   },
 ];
 
-export const TOPICS = ['All topics', 'Innovation'];
+export const TOPICS = ['All topics', 'Innovation', 'Product'];
 
-/* ------------------------------------------------------- the written-out articles */
+/* ------------------------------------------------- the written-out articles */
 
 export const fullArticles = {
   'from-problems-to-possibilities': {
@@ -54,8 +64,7 @@ export const fullArticles = {
     topic: 'Innovation',
     series: 'DILP WEDNESDAYS',
     title: ['From problems to possibilities', 'with Emmanuel Ambrose Bida'],
-    standfirst:
-      'Which question best starts innovation? Most hands went up for the right one — who experiences the problem, and why.',
+    standfirst: 'Innovation starts with who has the problem, not with the technology.',
     byline: 'By Desmond Jumbo',
     meta: '3 November 2026 · 7 min read',
     image: 'article-ambrose-hero.webp',
@@ -82,7 +91,7 @@ export const fullArticles = {
         id: 'the-question',
         heading: 'It starts with the question',
         blocks: [
-          ['p', 'Ambrose opened with a quiz. Which question best starts innovation? Is it which technology is trending, how to make something look impressive, or who experiences the problem and why? Most hands went up for the last option. That was the right answer.'],
+          ['p', 'Emmanuel Ambrose Bida opened with a quiz. Which question best starts innovation? Is it which technology is trending, how to make something look impressive, or who experiences the problem and why? Most hands went up for the last option. That was the right answer.'],
           ['p', 'He used smoking to explain why. Before you decide smokers need rehab, ask why they started smoking in the first place. Not everybody smokes. So what makes these people different?'],
           ['quote', 'Those are the kind of questions you ask in innovation.'],
         ],
@@ -171,17 +180,149 @@ export const fullArticles = {
       prompts: [
         'Notice: what problem am I about to solve without asking who actually has it?',
         'Choose: what is the smallest way I could test the idea this week?',
-        'Act: write the problem statement — who is affected, what they struggle to do, the root cause and the impact.',
+        'Act: write the problem statement, naming who is affected, what they struggle to do, the root cause and the impact.',
       ],
       followUp: 'At your next check-in, ask: did I change the question, or only the system?',
     },
     closing:
-      'So don’t wait for the perfect answer. Ask what the smallest way to test your idea is. “Done is better than perfect,” he said — and that doesn’t mean settling for mediocrity.',
+      'So don’t wait for the perfect answer. Ask what the smallest way to test your idea is. “Done is better than perfect,” he said, and that doesn’t mean settling for mediocrity.',
     about: {
       name: 'Emmanuel Ambrose Bida',
       text: 'A Digital Transformation Analyst and Project Manager in the Digital & Innovations Department at Nigeria LNG (NLNG), Bonny. He started his career as a data analyst. His work now includes digital twin projects that use predictive analytics to monitor assets. He has led Power BI and Power Apps bootcamps that graduated over 150 employees, managed a company-wide hackathon and helped set up an innovation hub.',
       linkLabel: 'Connect on LinkedIn',
       linkHref: 'https://www.linkedin.com/in/emmanuel-ambrose-bida%C2%AE-713b3b1b3/',
+    },
+    credit: 'Leadership & Character · DILP by Cedars',
+  },
+
+  'turning-ideas-into-testable-products': {
+    slug: 'turning-ideas-into-testable-products',
+    topic: 'Product',
+    series: 'DILP WEDNESDAYS',
+    title: ['Building MVP: turning ideas into testable products', 'with Oluchukwu Okafor'],
+    standfirst: 'Ideas are easy. Building something people come back to is the hard part.',
+    byline: 'By Desmond Jumbo',
+    meta: '3 November 2026 · 8 min read',
+    image: 'article-oluchukwu-hero.webp',
+    imageAlt:
+      'Oluchukwu Okafor addressing DILP participants during the Building MVP session.',
+    captionLeft: 'DILP Wednesdays',
+    captionRight: 'Cedars Productivity Centre, Bonny Island.',
+    contents: [
+      ['The AI paradox', 'ai-paradox'],
+      ['Three ideas to take with you', 'key-takeaways'],
+      ['Define the problem precisely', 'define-the-problem'],
+      ['Build with other people', 'build-with-others'],
+      ['Generate ideas, rank them, set a deadline', 'generate-and-rank'],
+      ['Prototype, then test with real people', 'prototype-and-test'],
+      ['Three mindsets for builders', 'three-mindsets'],
+    ],
+    lens: {
+      label: 'THE WEDNESDAY LENS',
+      format: 'Mentor-led session · Product & MVPs',
+      note: 'Oluchukwu Okafor · Cedars Productivity Centre, Bonny Island.',
+    },
+    sections: [
+      {
+        id: 'ai-paradox',
+        heading: 'The AI paradox',
+        blocks: [
+          ['p', 'Oluchukwu Okafor opened with a show of hands. Who had ever had an idea for an app, a website or a product? Hands went up. Then he asked people to keep their hands up only if they had built it in front of real users. Some came down.'],
+          ['quote', 'It’s very easy to have an idea, but it’s hard to actually build out the idea in a way that users actually want to use it.'],
+          ['p', 'Building an app used to mean months learning React Native or Kotlin, or paying a developer, then weeks waiting for a first version. Now you describe what you want in plain language, and AI builds something that works, right?'],
+          ['p', 'Yet most people still use the same products. “There’s no new chat app that most people use other than WhatsApp,” he said. If building is this easy, where are the new products people use every day?'],
+          ['p', 'He pointed to three marks of a good product:'],
+          ['list', [
+            'It solves a real problem.',
+            'People come back without reminders.',
+            'It works reliably.',
+          ]],
+          ['p', 'AI has mostly handled the last one. Craigslist looks plain, but lots of people use it, and it makes millions of dollars a year because it solves a problem people have.'],
+          ['p', 'AI can’t understand your specific users. This is especially true in Africa, because most of the data used to train it didn’t come from our countries. It can’t decide what matters in your context, and it can’t tell whether the product works for the people you’re building for.'],
+          ['quote', 'Think of AI as an amplifier. It’s amplifying what is already there, but it’s not replacing it.'],
+        ],
+      },
+      {
+        id: 'define-the-problem',
+        heading: 'Define the problem precisely',
+        blocks: [
+          ['p', 'Most people start building before they know what they’re solving or what success looks like. He compared two problem statements.'],
+          ['p', 'Vague: people need a better way to save money.'],
+          ['p', 'Precise: young workers paid monthly run out of money by week three because they can’t see where it went.'],
+          ['p', 'The second one tells you these are salaried workers. It tells you the solution should work in weeks, not years. And it tells you the real problem is that they can’t see their spending.'],
+          ['p', 'His template asks five things:'],
+          ['list', [
+            'Who is struggling (target audience)',
+            'What they are struggling to do',
+            'In what situation',
+            'What causes it',
+            'What they currently do about it',
+          ]],
+          ['figure', 'article-oluchukwu-room.webp', 'DILP participants listening during the Building MVP session.', 'The room working through two versions of the same problem statement.'],
+        ],
+      },
+      {
+        id: 'build-with-others',
+        heading: 'Build with other people',
+        blocks: [
+          ['p', 'AI can make you think you can work alone. Oluchukwu disagreed. A partner keeps you to your deadlines because “most people are more willing to disappoint themselves than others.” Other people catch what you missed and cover the skills you lack.'],
+          ['p', 'Avoid relationships where only one person benefits. Don’t chase established founders on LinkedIn, who are unlikely to have time for you. Look for people at your level, heading the same way, with skills different from yours. Classmates, meetups, hackathons and online communities are good places to start. Agree up front on the timeline, weekly check-ins, rules and what each person gets.'],
+        ],
+      },
+      {
+        id: 'generate-and-rank',
+        heading: 'Generate ideas, rank them, and set a deadline',
+        blocks: [
+          ['quote', 'The first idea you have in mind is not necessarily the best one.'],
+          ['p', 'Write down ten or more ideas without judging them, wild and boring alike. Then score them, for example on impact, ease and confidence. Write the scores down so you can compare them with what actually happens.'],
+          ['p', 'Then set a deadline, because work fills the time you give it.'],
+        ],
+      },
+      {
+        id: 'prototype-and-test',
+        heading: 'Prototype, then test with real people',
+        blocks: [
+          ['p', 'A prototype can be a clickable mockup or a one-page website. It only has to be something people can try. When you test, give people a task and watch without guiding them. If you have to explain everything, it isn’t user-friendly yet. Ask open questions such as “What did you expect to happen?” so people don’t tailor their answers to what they think you want.'],
+          ['p', 'Also make sure to set your success criteria before testing. For a class calendar app, you should ask questions such as: can testers add a deadline without help? Do they use it again without being prompted? Do they share it with their class?'],
+          ['p', 'If the results meet your criteria, build a fuller product. If not, sharpen the problem and go round again. AI has made starting over much easier.'],
+          ['figure', 'article-oluchukwu-question.webp', 'A DILP participant raising a point during the Building MVP session.', 'Questions from the floor as the teams sized up their own ideas.'],
+        ],
+      },
+      {
+        id: 'three-mindsets',
+        heading: 'Three mindsets for builders',
+        blocks: [
+          ['p', 'First, building is a loop. Your first loop will be slow, messy and uncertain. By the fifth, you ask better questions. By the tenth, you go through the process faster. Oluchukwu once built a Sudoku solver that wasn’t successful at first, but it taught him search algorithms he later used to build a chess engine. “Failure is like a teacher to you,” he said.'],
+          ['p', 'Second, climb Jacob’s Ladder. Builders need to move between big ideas and implementation details. AI keeps you at the level of ideas, but to use it well, you need the details too. He suggested doing some projects manually, some with AI and some with both, the same way you learn mental maths before you use a calculator. If you rely on AI for everything, you never learn the details. Refusing to use it out of pride is also a mistake.'],
+          ['p', 'Third, treat life as a search space. If you lose your key, you don’t check under the bed and give up. Each failed attempt rules out a place to look.'],
+        ],
+      },
+    ],
+    takeaways: {
+      title: 'Three ideas to take with you',
+      items: [
+        ['Ideas are easy. Built things are not.', 'Building has never been cheaper, and yet few new products are the ones people reach for every day.'],
+        ['AI amplifies, it doesn’t replace.', 'It can’t understand your users, and most of its training data didn’t come from our countries.'],
+        ['Define the problem before you build.', 'Who is struggling, with what, in what situation, what causes it, and what they currently do about it.'],
+      ],
+    },
+    reflection: {
+      label: 'PAUSE. REFLECT. PUT IT TO WORK.',
+      heading: 'Your next small step',
+      prompts: [
+        'Notice: what idea have I had that I’ve never put in front of a real user?',
+        'Choose: write the problem precisely, naming who struggles and what causes it.',
+        'Act: set a deadline, then put a rough prototype in front of three people this week.',
+      ],
+      followUp: 'At your next check-in, ask: did I watch someone use it without explaining it to them?',
+    },
+    closing:
+      'The four Cohort 2 teams are already working on a version of this. Each team picks a sector, community or organisation, finds a problem and builds a solution. His advice to them was to talk to the people you’re solving for before you decide what the problem is, then check your definition with them. “Most people are nice, so they don’t bite.”',
+    about: {
+      name: 'Oluchukwu Okafor',
+      text: 'Ex-Microsoft, a researcher and a tech founder. He studied mechanical engineering and started coding at university, where he built games, a chess engine and other projects. He has since worked with top tech companies and on award-winning projects.',
+      linkLabel: 'Connect on LinkedIn',
+      linkHref: 'https://www.linkedin.com/in/oluchukwu-okafor/',
     },
     credit: 'Leadership & Character · DILP by Cedars',
   },

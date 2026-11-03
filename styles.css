@@ -2309,7 +2309,7 @@ h1, h2, h3, h4, p, figure, figcaption, blockquote { margin: 0; }
 }
 
 .masthead { display: flex; align-items: flex-end; gap: 80px; }
-.masthead__title { flex: 740 1 740px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+.masthead__title { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
 .masthead__title h1 {
   font-family: var(--font-display);
   font-weight: 800;
@@ -2326,9 +2326,6 @@ h1, h2, h3, h4, p, figure, figcaption, blockquote { margin: 0; }
   background: var(--yellow-6);
   vertical-align: middle;
 }
-.masthead__intro { flex: 500 1 500px; min-width: 0; display: flex; flex-direction: column; gap: 16px; padding-bottom: 8px; }
-.masthead__intro p { font-size: 20px; line-height: 1.48; color: var(--text-8); }
-.masthead__note { font-size: 12px !important; line-height: 1.4 !important; color: var(--text-6) !important; }
 
 .feature {
   display: flex;
@@ -3023,7 +3020,7 @@ h1, h2, h3, h4, p, figure, figcaption, blockquote { margin: 0; }
   .involved-hero__inner { flex-direction: column; align-items: stretch; gap: 40px; }
   .involved-hero__copy, .involved-hero__media { flex: 0 0 auto; }
   .masthead { flex-direction: column; align-items: flex-start; gap: 28px; }
-  .masthead__title, .masthead__intro { flex: 0 0 auto; }
+  .masthead__title { flex: 0 0 auto; }
   .feature { flex-direction: column; }
   .feature__story, .feature__photo { flex: 0 0 auto; }
   .feature__photo { height: 320px; }
@@ -3130,7 +3127,6 @@ h1, h2, h3, h4, p, figure, figcaption, blockquote { margin: 0; }
   .contribute-ribbon__item { padding-inline: 18px; font-size: 16px; }
   .editorial__inner { padding-block: 24px 48px; }
   .masthead__title h1 { font-size: 34px; }
-  .masthead__intro p { font-size: 17px; }
   .feature__story { padding: 28px; }
   .feature__copy h2 { font-size: 27px; }
   .feature__photo { height: 240px; }
