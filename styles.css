@@ -2800,6 +2800,19 @@ button.give-card__amount:hover { border-color: var(--blue-2); background: var(--
   color: var(--mint-ink);
 }
 .donation-confirm a { color: inherit; font-weight: 700; text-decoration: underline; }
+.donation-confirm.is-error { border-color: var(--peach-1); background: #fff6f1; color: var(--peach-ink-strong); }
+
+/* Bots fill this in; people never see it. */
+.enquiry__trap {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
 
 .give__secure { font-size: 14px; line-height: 1.5; color: var(--text-7); max-width: 760px; }
 .give__secure a { color: var(--blue-6); font-weight: 700; text-decoration: underline; }

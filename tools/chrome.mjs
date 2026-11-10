@@ -37,6 +37,13 @@ export const TICKER_ITEMS = [
 export const PARTNERSHIPS_EMAIL = 'partnerships@cedarsprohub.com';
 
 /* -------------------------------------------------------------------------
+   Where the enquiry form posts. The site is static, so this points at the
+   Python service in api/, wherever it is deployed. Leave it as a path to
+   use the same host; set a full URL when the API is on its own domain.
+   ------------------------------------------------------------------------- */
+export const ENQUIRY_ENDPOINT = '/api/donation-enquiry';
+
+/* -------------------------------------------------------------------------
    Paystack payment links. Paste the live payment-page URL between the
    quotes — nothing else needs changing; the "Give now" section on
    get-involved.html picks them up on the next `node tools/build-site.mjs`.

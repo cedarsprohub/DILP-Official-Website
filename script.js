@@ -486,47 +486,82 @@
     var form = document.querySelector('[data-donation-form]');
     if (!form) return;
 
+    var panel = document.querySelector('[data-donation-confirm]');
+    var button = form.querySelector('[data-donation-submit]');
+    var buttonLabel = button ? button.innerHTML : '';
+    var endpoint = form.dataset.endpoint || '/api/donation-enquiry';
+    var MAILTO = '<a href="mailto:partnerships@cedarsprohub.com">partnerships@cedarsprohub.com</a>';
+
+    function say(html, tone) {
+      if (!panel) return;
+      panel.innerHTML = html;
+      panel.classList.toggle('is-error', tone === 'error');
+      panel.hidden = false;
+      panel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+
+    function busy(on) {
+      if (!button) return;
+      button.disabled = on;
+      button.innerHTML = on ? 'Sending…' : buttonLabel;
+    }
+
     form.addEventListener('submit', function (event) {
       event.preventDefault();
 
       var data = new FormData(form);
       var get = function (k) { return (data.get(k) || '').toString().trim(); };
 
-      var lines = [
-        'Name: ' + get('name'),
-        'Email: ' + get('email'),
-        'Organisation: ' + (get('organisation') || '—'),
-        'Contribution type: ' + get('contribution'),
-        'Proposed contribution: ' + (get('amount') || '—'),
-        '',
-        get('message') || '(no additional notes)'
-      ];
-
-      var href =
-        'mailto:partnerships@cedarsprohub.com' +
-        '?subject=' + encodeURIComponent('Donation enquiry: DILP') +
-        '&body=' + encodeURIComponent(lines.join('\n'));
-
-      // An anchor click opens the mail client more reliably than assigning
-      // location.href, and leaves the page where it is.
-      var link = document.createElement('a');
-      link.href = href;
-      link.rel = 'noopener';
-      link.style.display = 'none';
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-
-      var confirm = document.querySelector('[data-donation-confirm]');
-      if (confirm) {
-        confirm.innerHTML =
-          'Thank you, ' + (get('name').split(' ')[0] || 'and thank you') + '. ' +
-          'Your enquiry is now open in your email app, addressed to ' +
-          '<a href="mailto:partnerships@cedarsprohub.com">partnerships@cedarsprohub.com</a>. ' +
-          'Press send there to reach the DILP team. If nothing opened, email that address directly.';
-        confirm.hidden = false;
-        confirm.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      // The form is novalidate so the browser cannot interrupt the post;
+      // check the two fields the server insists on.
+      if (!get('name') || !get('email')) {
+        say('Please fill in your name and email so the team can reply.', 'error');
+        return;
       }
+
+      busy(true);
+
+      fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: get('name'),
+          email: get('email'),
+          organisation: get('organisation'),
+          contribution: get('contribution'),
+          amount: get('amount'),
+          message: get('message'),
+          website: get('website')
+        })
+      })
+        .then(function (response) {
+          if (response.ok) return response.json().catch(function () { return { ok: true }; });
+          if (response.status === 429) {
+            throw { friendly: 'We have had a few enquiries from here already. Please try again a little later, or email ' + MAILTO + '.' };
+          }
+          if (response.status === 422) {
+            throw { friendly: 'Please check your name and email address, then try again.' };
+          }
+          throw { friendly: 'Sorry, the enquiry could not be sent just now. Please email ' + MAILTO + ' instead.' };
+        })
+        .then(function () {
+          form.reset();
+          say(
+            'Thank you, ' + (get('name').split(' ')[0] || 'and thank you') + '. ' +
+            'Your enquiry has been sent to the DILP team, and someone will reply to ' +
+            get('email').replace(/</g, '&lt;') + '.'
+          );
+        })
+        .catch(function (error) {
+          say(
+            (error && error.friendly) ||
+              ('Sorry, the enquiry could not be sent. Please check your connection, or email ' + MAILTO + ' instead.'),
+            'error'
+          );
+        })
+        .then(function () {
+          busy(false);
+        });
     });
   }
 

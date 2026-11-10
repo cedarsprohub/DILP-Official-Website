@@ -17,7 +17,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { tracks, WEEKS } from './tracks.data.mjs';
 import { articles, TOPICS, fullArticles } from './articles.data.mjs';
-import { ticker, header, footer, head, esc, pad, numberWord, PARTNERSHIPS_EMAIL, PAYSTACK } from './chrome.mjs';
+import { ticker, header, footer, head, esc, pad, numberWord, PARTNERSHIPS_EMAIL, PAYSTACK, ENQUIRY_ENDPOINT } from './chrome.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -745,7 +745,7 @@ ${header(base, 'involved')}
           <p class="why-give__note">No cost to selected participants. Your support helps strengthen that pathway.</p>
         </div>
 
-        <form class="enquiry" data-donation-form>
+        <form class="enquiry" data-donation-form data-endpoint="${esc(ENQUIRY_ENDPOINT)}" novalidate>
           <div class="enquiry__intro">
             <h2>Start your donation</h2>
             <p>For pledges, recurring gifts and corporate donations. To give straight away, use <a href="#give">Give now</a> above.</p>
@@ -788,7 +788,12 @@ ${header(base, 'involved')}
             <textarea name="message" rows="3" placeholder="Tell us what you have in mind…"></textarea>
           </label>
 
-          <button class="btn btn--blue btn--enquiry btn--block" type="submit">Send donation enquiry &nbsp;&rarr;</button>
+          <label class="enquiry__trap" aria-hidden="true">
+            Leave this field empty
+            <input type="text" name="website" tabindex="-1" autocomplete="off">
+          </label>
+
+          <button class="btn btn--blue btn--enquiry btn--block" type="submit" data-donation-submit>Send donation enquiry &nbsp;&rarr;</button>
           <p class="enquiry__note">Discuss donation arrangements with the DILP team before making a contribution. No payment details are collected here.</p>
         </form>
       </div>

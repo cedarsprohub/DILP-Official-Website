@@ -273,7 +273,7 @@
           <p class="why-give__note">No cost to selected participants. Your support helps strengthen that pathway.</p>
         </div>
 
-        <form class="enquiry" data-donation-form>
+        <form class="enquiry" data-donation-form data-endpoint="/api/donation-enquiry" novalidate>
           <div class="enquiry__intro">
             <h2>Start your donation</h2>
             <p>For pledges, recurring gifts and corporate donations. To give straight away, use <a href="#give">Give now</a> above.</p>
@@ -316,7 +316,12 @@
             <textarea name="message" rows="3" placeholder="Tell us what you have in mind…"></textarea>
           </label>
 
-          <button class="btn btn--blue btn--enquiry btn--block" type="submit">Send donation enquiry &nbsp;&rarr;</button>
+          <label class="enquiry__trap" aria-hidden="true">
+            Leave this field empty
+            <input type="text" name="website" tabindex="-1" autocomplete="off">
+          </label>
+
+          <button class="btn btn--blue btn--enquiry btn--block" type="submit" data-donation-submit>Send donation enquiry &nbsp;&rarr;</button>
           <p class="enquiry__note">Discuss donation arrangements with the DILP team before making a contribution. No payment details are collected here.</p>
         </form>
       </div>
