@@ -2789,7 +2789,8 @@ button.give-card__amount:hover { border-color: var(--blue-2); background: var(--
 .give-card .btn { margin-top: auto; }
 .give-card__note { font-size: 13px; font-weight: 500; color: var(--text-6); text-align: center; }
 
-.enquiry__confirm {
+.donation-confirm {
+  margin-top: 20px;
   padding: 14px 18px;
   border: 1px solid var(--mint-1);
   border-radius: 12px;
@@ -2798,7 +2799,7 @@ button.give-card__amount:hover { border-color: var(--blue-2); background: var(--
   line-height: 1.5;
   color: var(--mint-ink);
 }
-.enquiry__confirm a { color: inherit; font-weight: 700; text-decoration: underline; }
+.donation-confirm a { color: inherit; font-weight: 700; text-decoration: underline; }
 
 .give__secure { font-size: 14px; line-height: 1.5; color: var(--text-7); max-width: 760px; }
 .give__secure a { color: var(--blue-6); font-weight: 700; text-decoration: underline; }

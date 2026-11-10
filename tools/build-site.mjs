@@ -789,10 +789,11 @@ ${header(base, 'involved')}
           </label>
 
           <button class="btn btn--blue btn--enquiry btn--block" type="submit">Send donation enquiry &nbsp;&rarr;</button>
-          <p class="enquiry__confirm" data-donation-confirm hidden role="status"></p>
           <p class="enquiry__note">Discuss donation arrangements with the DILP team before making a contribution. No payment details are collected here.</p>
         </form>
       </div>
+
+      <p class="donation-confirm" data-donation-confirm hidden role="status"></p>
     </div>
   </section>
 
