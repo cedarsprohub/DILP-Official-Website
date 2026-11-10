@@ -59,8 +59,9 @@ export const articles = [
     title: 'Beyond the classroom',
     summary:
       'A visit to NLNG’s innovation centre, and what it says about the kind of builders DILP is for.',
+    image: 'article-cove-card.webp',
+    imageAlt: 'Ambrose writing on a screen at Catalyst Cove as DILP participants watch.',
     published: true,
-    // image/imageAlt land here once the visit photography arrives.
   },
 ];
 
@@ -345,6 +346,9 @@ export const fullArticles = {
       'Innovation doesn’t have to begin with a groundbreaking idea. It can begin with a problem in front of you.',
     byline: 'By Desmond Jumbo',
     meta: '9 November 2026 · 4 min read',
+    image: 'article-cove-hero.webp',
+    imageAlt:
+      'Ambrose writing “How to identify a problem worth solving?” on a screen as DILP participants watch.',
     captionLeft: 'Catalyst Cove, Nigeria LNG · 6 November 2026',
     captionRight: 'Bonny Island.',
     contents: [
@@ -364,6 +368,7 @@ export const fullArticles = {
         heading: 'The visit',
         blocks: [
           ['p', 'On Friday, 6 November 2026, participants in the Digital Innovation and Leadership Programme visited Catalyst Cove, the innovation centre of Nigeria LNG Limited. The visit gave them a close look at the mindset and practice of innovation.'],
+          ['figure', 'article-cove-space.webp', 'DILP participants seated in the Catalyst Cove innovation space as Ambrose addresses them.', 'Inside Catalyst Cove, the innovation centre of Nigeria LNG.'],
         ],
       },
       {
@@ -371,7 +376,9 @@ export const fullArticles = {
         heading: 'How innovation happens in practice',
         blocks: [
           ['p', 'In a session facilitated by Ambrose, participants explored how innovation works in practice. It starts with identifying real-world problems and questioning assumptions. Then it moves on to developing ideas, experimenting, testing solutions and learning through feedback.'],
+          ['figure', 'article-cove-listening.webp', 'Three DILP participants following the session, one holding a notebook.', 'Working through how a problem gets identified before anything is built.'],
           ['quote', 'Innovation doesn’t have to begin with a groundbreaking idea. It can begin with a simple problem in your immediate environment and a commitment to solving it.'],
+          ['figure', 'article-cove-usecase.webp', 'Ambrose presenting use cases for VR technology to DILP participants.', 'From the problem to the use case for a technology.'],
         ],
       },
       {
@@ -380,7 +387,9 @@ export const fullArticles = {
         blocks: [
           ['p', 'The same thinking shapes what we are building at Cedars Productivity Centre. We believe digital skills and emerging technologies should do more than add to what people know. They should help people understand challenges, create practical solutions, unlock opportunities and improve lives.'],
           ['p', 'DILP turns this belief into action. The programme brings together applied learning, human-centred innovation, AI-enabled problem-solving and practical solutions for community impact.'],
+          ['figure', 'article-cove-vr.webp', 'A DILP participant wearing a VR headset while others look on.', 'Hands on the technology rather than a description of it.'],
           ['p', 'Our goal is to nurture critical thinkers, problem-solvers, innovators and builders who can use technology to create economic and social value.'],
+          ['figure', 'article-cove-host.webp', 'A member of the Catalyst Cove team presenting beside a VR headset.', 'The Catalyst Cove team on how ideas become working solutions.'],
         ],
       },
     ],
