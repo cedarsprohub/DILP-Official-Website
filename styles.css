@@ -2801,6 +2801,7 @@ button.give-card__amount:hover { border-color: var(--blue-2); background: var(--
 }
 .donation-confirm a { color: inherit; font-weight: 700; text-decoration: underline; }
 .donation-confirm.is-error { border-color: var(--peach-1); background: #fff6f1; color: var(--peach-ink-strong); }
+.donation-confirm__code { opacity: 0.7; font-variant-numeric: tabular-nums; }
 
 /* Bots fill this in; people never see it. */
 .enquiry__trap {

@@ -1,13 +1,16 @@
-"""Donation enquiry endpoint for the DILP site.
+"""Donation enquiry service for the DILP site, shared by the route files.
 
-The site is static. This small service is the one piece that needs a server:
-it takes the enquiry form's JSON, emails it to the partnerships address over
-SMTP, and returns a plain ok/not-ok so the page can say what happened.
+The site is static. This is the one piece that needs a server: it takes the
+enquiry form's JSON, emails it to the partnerships address over SMTP, and
+returns a plain ok/not-ok so the page can say what happened.
+
+The leading underscore matters: Vercel routes every api/*.py file except the
+ones starting with "_", so the two thin route files beside this import it.
 
 Run locally:
     pip install -r requirements.txt
-    cp .env.example .env     # then fill it in
-    uvicorn app:app --reload --port 8000
+    cp api/.env.example api/.env     # then fill it in
+    uvicorn api._service:app --reload --port 8000
 
 Nothing here reads a secret from anywhere but the environment.
 """
@@ -47,6 +50,9 @@ SMTP_USER = os.getenv("SMTP_USER", "")
 SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
 # starttls (587, the usual choice) | ssl (465) | none (a local relay)
 SMTP_SECURITY = os.getenv("SMTP_SECURITY", "starttls").lower()
+# Keep under the host's function timeout (Vercel Hobby cuts off at 10s),
+# otherwise the request dies before SMTP gives up and the caller sees nothing.
+SMTP_TIMEOUT = float(os.getenv("SMTP_TIMEOUT", "8"))
 
 # The envelope sender has to be an address the SMTP account may send as.
 MAIL_FROM = os.getenv("MAIL_FROM", SMTP_USER)
@@ -165,13 +171,13 @@ def _build_message(enquiry: DonationEnquiry) -> EmailMessage:
 def _send(msg: EmailMessage) -> None:
     context = ssl.create_default_context()
     if SMTP_SECURITY == "ssl":
-        with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, context=context, timeout=20) as server:
+        with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, context=context, timeout=SMTP_TIMEOUT) as server:
             if SMTP_USER:
                 server.login(SMTP_USER, SMTP_PASSWORD)
             server.send_message(msg)
         return
 
-    with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=20) as server:
+    with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=SMTP_TIMEOUT) as server:
         server.ehlo()
         if SMTP_SECURITY == "starttls":
             server.starttls(context=context)
@@ -181,14 +187,12 @@ def _send(msg: EmailMessage) -> None:
         server.send_message(msg)
 
 
-@app.get("/healthz")
 def healthz() -> dict:
     """Says whether the service could actually send, without leaking values."""
     problems = _config_problems()
     return {"ok": not problems, "missing": problems}
 
 
-@app.post("/api/donation-enquiry")
 async def donation_enquiry(enquiry: DonationEnquiry, request: Request) -> dict:
     # Quietly accept the bots so they do not learn anything from the response.
     if enquiry.website:
@@ -214,3 +218,12 @@ async def donation_enquiry(enquiry: DonationEnquiry, request: Request) -> dict:
         raise HTTPException(status_code=502, detail="The enquiry could not be sent.")
 
     return {"ok": True}
+
+
+# Hosts differ in whether the ASGI app sees the full path or one stripped of
+# the function's own prefix, so each handler answers on both.
+for _path in ("/api/donation-enquiry", "/donation-enquiry", "/"):
+    app.add_api_route(_path, donation_enquiry, methods=["POST"])
+
+for _path in ("/api/healthz", "/healthz", "/"):
+    app.add_api_route(_path, healthz, methods=["GET"])

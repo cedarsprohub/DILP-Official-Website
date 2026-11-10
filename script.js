@@ -542,7 +542,15 @@
           if (response.status === 422) {
             throw { friendly: 'Please check your name and email address, then try again.' };
           }
-          throw { friendly: 'Sorry, the enquiry could not be sent just now. Please email ' + MAILTO + ' instead.' };
+          // 404 means the endpoint is not deployed where the page expects it;
+          // 5xx means it is there but could not send. Both are ours to fix, so
+          // show the code to make the difference reportable.
+          console.error('Enquiry failed: HTTP ' + response.status + ' from ' + endpoint);
+          throw {
+            friendly:
+              'Sorry, the enquiry could not be sent just now. Please email ' + MAILTO +
+              ' instead. <span class="donation-confirm__code">(error ' + response.status + ')</span>'
+          };
         })
         .then(function () {
           form.reset();
@@ -553,6 +561,7 @@
           );
         })
         .catch(function (error) {
+          if (!(error && error.friendly)) console.error('Enquiry failed before a reply:', error);
           say(
             (error && error.friendly) ||
               ('Sorry, the enquiry could not be sent. Please check your connection, or email ' + MAILTO + ' instead.'),
