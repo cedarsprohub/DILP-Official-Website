@@ -52,9 +52,19 @@ export const articles = [
     imageAlt: 'Oluchukwu Okafor addressing the room during the DILP Wednesday session.',
     published: true,
   },
+  {
+    slug: 'beyond-the-classroom',
+    topic: 'Programme',
+    readTime: '4 min read',
+    title: 'Beyond the classroom',
+    summary:
+      'A visit to NLNG’s innovation centre, and what it says about the kind of builders DILP is for.',
+    published: true,
+    // image/imageAlt land here once the visit photography arrives.
+  },
 ];
 
-export const TOPICS = ['All topics', 'Innovation', 'Product'];
+export const TOPICS = ['All topics', 'Innovation', 'Product', 'Programme'];
 
 /* ------------------------------------------------- the written-out articles */
 
@@ -325,5 +335,75 @@ export const fullArticles = {
       linkHref: 'https://www.linkedin.com/in/oluchukwu-okafor/',
     },
     credit: 'Leadership & Character · DILP by Cedars',
+  },
+  'beyond-the-classroom': {
+    slug: 'beyond-the-classroom',
+    topic: 'Programme',
+    series: 'PROGRAMME VISIT',
+    title: ['Beyond the classroom:', 'inspiring the next generation of innovators'],
+    standfirst:
+      'Innovation doesn’t have to begin with a groundbreaking idea. It can begin with a problem in front of you.',
+    byline: 'By Desmond Jumbo',
+    meta: '9 November 2026 · 4 min read',
+    captionLeft: 'Catalyst Cove, Nigeria LNG · 6 November 2026',
+    captionRight: 'Bonny Island.',
+    contents: [
+      ['The visit', 'the-visit'],
+      ['Three ideas to take with you', 'key-takeaways'],
+      ['How innovation happens in practice', 'in-practice'],
+      ['What this means for DILP', 'what-it-means'],
+    ],
+    lens: {
+      label: 'AT A GLANCE',
+      format: 'Programme visit · Innovation in practice',
+      note: 'Catalyst Cove, the innovation centre of Nigeria LNG Limited · 6 November 2026.',
+    },
+    sections: [
+      {
+        id: 'the-visit',
+        heading: 'The visit',
+        blocks: [
+          ['p', 'On Friday, 6 November 2026, participants in the Digital Innovation and Leadership Programme visited Catalyst Cove, the innovation centre of Nigeria LNG Limited. The visit gave them a close look at the mindset and practice of innovation.'],
+        ],
+      },
+      {
+        id: 'in-practice',
+        heading: 'How innovation happens in practice',
+        blocks: [
+          ['p', 'In a session facilitated by Ambrose, participants explored how innovation works in practice. It starts with identifying real-world problems and questioning assumptions. Then it moves on to developing ideas, experimenting, testing solutions and learning through feedback.'],
+          ['quote', 'Innovation doesn’t have to begin with a groundbreaking idea. It can begin with a simple problem in your immediate environment and a commitment to solving it.'],
+        ],
+      },
+      {
+        id: 'what-it-means',
+        heading: 'What this means for DILP',
+        blocks: [
+          ['p', 'The same thinking shapes what we are building at Cedars Productivity Centre. We believe digital skills and emerging technologies should do more than add to what people know. They should help people understand challenges, create practical solutions, unlock opportunities and improve lives.'],
+          ['p', 'DILP turns this belief into action. The programme brings together applied learning, human-centred innovation, AI-enabled problem-solving and practical solutions for community impact.'],
+          ['p', 'Our goal is to nurture critical thinkers, problem-solvers, innovators and builders who can use technology to create economic and social value.'],
+        ],
+      },
+    ],
+    takeaways: {
+      title: 'Three ideas to take with you',
+      items: [
+        ['Start where you are.', 'A simple problem in your immediate environment is a legitimate place to begin.'],
+        ['Question the assumptions.', 'Innovation begins with identifying the real problem, not with the first idea.'],
+        ['Learn through feedback.', 'Develop, experiment, test, then let what you learn change the next attempt.'],
+      ],
+    },
+    reflection: {
+      label: 'PAUSE. REFLECT. PUT IT TO WORK.',
+      heading: 'Your next small step',
+      prompts: [
+        'Notice: what problem in my immediate environment have I stopped seeing?',
+        'Choose: which assumption behind it have I never actually checked?',
+        'Act: test one small change this week and write down what happened.',
+      ],
+      followUp: 'At your next check-in, ask: did the feedback change what I build next?',
+    },
+    closing:
+      'We thank NLNG and the Catalyst Cove team for this experience and for the opportunity to inspire our community.',
+    credit: 'DILP by Cedars',
   },
 };

@@ -2,7 +2,7 @@
    Generates every page except index.html:
 
      tracks/<slug>.html                 7 track pages
-     articles/index.html                DILP Wednesdays hub
+     articles/index.html                DILP Articles hub
      articles/<slug>.html               the written-out article
      get-involved.html                  partnerships and donations
 
@@ -259,7 +259,10 @@ ${footer(base)}
    are not links, so the hub has no dead ends. Set `published: true` in
    articles.data.mjs once a page exists for one. */
 function articleCard(a, base) {
-  const media = a.published
+  // An article may go up before its photography arrives.
+  const media = !a.image
+    ? ''
+    : a.published
     ? `<a class="article-card__media" href="${a.slug}.html"><img src="${base}assets/img/${a.image}" alt="${esc(a.imageAlt)}" loading="lazy"></a>`
     : `<span class="article-card__media"><img src="${base}assets/img/${a.image}" alt="${esc(a.imageAlt)}" loading="lazy"></span>`;
 
@@ -296,7 +299,7 @@ function articlesHub() {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
-${head(base, 'DILP Wednesdays: Leadership hub | Cedars Productivity Centre', 'Write-ups from the mentor-led Wednesday leadership sessions at DILP.', featureArt ? featureArt.image : 'article-ambrose-hero.webp')}
+${head(base, 'DILP Articles | Cedars Productivity Centre', 'Write-ups from the sessions, visits and ideas behind the DILP programme.', (featureArt && featureArt.image) || 'article-ambrose-hero.webp')}
 </head>
 <body>
 
@@ -311,13 +314,13 @@ ${header(base, 'leadership')}
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="${base}index.html">Home</a>
         <span aria-hidden="true">/</span>
-        <span aria-current="page">Leadership &amp; Character</span>
+        <span aria-current="page">DILP Articles</span>
       </nav>
 
       <div class="masthead">
         <div class="masthead__title">
-          <span class="editorial__label">LEADERSHIP &amp; CHARACTER</span>
-          <h1>Wednesdays for<br><span class="accent">the leader in you</span><span class="masthead__dot" aria-hidden="true"></span></h1>
+          <span class="editorial__label">DILP ARTICLES</span>
+          <h1>Stories from<br><span class="accent">the programme</span><span class="masthead__dot" aria-hidden="true"></span></h1>
         </div>
       </div>
 
@@ -348,7 +351,6 @@ ${header(base, 'leadership')}
     <div class="shell library__inner">
       <div class="library__head">
         <div class="library__heading">
-          <span class="editorial__label">THE WEDNESDAY NOTEBOOK</span>
           <h2>Keep learning. Keep growing.</h2>
         </div>
         <label class="library__search">
@@ -375,7 +377,7 @@ ${header(base, 'leadership')}
 
       <div class="library__foot">
         <span>Showing ${articles.length} of ${articles.length}</span>
-        <span>New articles are added after each Wednesday session.</span>
+        <span>New articles are added as the programme runs.</span>
       </div>
     </div>
   </section>
@@ -420,7 +422,7 @@ function articlePage(a) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
-${head(base, `${a.title.join(' ')} | DILP Wednesdays`, a.standfirst, a.image)}
+${head(base, `${a.title.join(' ')} | DILP Articles`, a.standfirst, a.image || 'track-cyber-hero.webp')}
 </head>
 <body>
 
@@ -435,9 +437,9 @@ ${header(base, 'leadership')}
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="${base}index.html">Home</a>
         <span aria-hidden="true">/</span>
-        <a href="index.html">Leadership</a>
+        <a href="index.html">DILP Articles</a>
         <span aria-hidden="true">/</span>
-        <span aria-current="page">DILP Wednesdays</span>
+        <span aria-current="page">${esc(a.topic)}</span>
       </nav>
 
       <div class="article-intro__headline">
@@ -454,13 +456,13 @@ ${header(base, 'leadership')}
         </div>
       </div>
 
-      <figure class="article-intro__figure">
+      ${a.image ? `<figure class="article-intro__figure">
         <img src="${base}assets/img/${a.image}" alt="${esc(a.imageAlt)}">
         <figcaption>
           <span>${esc(a.captionLeft)}</span>
           <span>${esc(a.captionRight)}</span>
         </figcaption>
-      </figure>
+      </figure>` : ''}
     </div>
   </section>
 
@@ -478,7 +480,7 @@ ${header(base, 'leadership')}
           <p class="lens__note">${esc(a.lens.note)}</p>
         </div>
 
-        <a class="reading__back" href="index.html">← All Wednesday articles</a>
+        <a class="reading__back" href="index.html">← All articles</a>
       </aside>
 
       <div class="prose">
@@ -526,7 +528,7 @@ ${header(base, 'leadership')}
     <div class="shell library__inner">
       <div class="library__head">
         <h2 class="related__heading">Keep learning</h2>
-        <a class="related__all" href="index.html">All Wednesday articles &rarr;</a>
+        <a class="related__all" href="index.html">All articles &rarr;</a>
       </div>
       <div class="article-grid">
         ${related.map((r) => articleCard(r, base)).join('\n        ')}

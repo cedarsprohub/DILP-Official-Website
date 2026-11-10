@@ -95,7 +95,7 @@ export function header(base = '', active = '', slug = '') {
           ${trackLinks}
         </div>
       </div>
-      <a class="nav__link" href="${base}articles/index.html"${active === 'leadership' ? ' aria-current="page"' : ''}>Leadership</a>
+      <a class="nav__link" href="${base}articles/index.html"${active === 'leadership' ? ' aria-current="page"' : ''}>DILP Articles</a>
       <a class="nav__link" href="${base}get-involved.html"${active === 'involved' ? ' aria-current="page"' : ''}>Get Involved</a>
     </nav>
 
@@ -126,7 +126,7 @@ export function header(base = '', active = '', slug = '') {
             </div>
           </div>
         </li>
-        <li><a href="${base}articles/index.html">Leadership</a></li>
+        <li><a href="${base}articles/index.html">DILP Articles</a></li>
         <li><a href="${base}get-involved.html">Get Involved</a></li>
       </ul>
       <a class="btn btn--blue btn--lg" href="${base}get-involved.html">Get involved</a>
@@ -166,7 +166,7 @@ export function footer(base = '') {
 
       <nav class="footer__col" aria-label="Leadership">
         <span class="footer__label">LEADERSHIP</span>
-        <a href="${base}articles/index.html">DILP Wednesdays</a>
+        <a href="${base}articles/index.html">DILP Articles</a>
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Use</a>
       </nav>
